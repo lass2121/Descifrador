@@ -5,17 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-content>
+  <form>
+    <ion-list>
       <ion-item>
-        <ion-label position="floating" color="primary">Email</ion-label>
-        <ion-input type="text" placeholder="Email"></ion-input>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" ngModel name="username"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" color="primary">Password</ion-label>
-        <ion-input type="password" placeholder="Password"></ion-input>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" ngModel name="password"></ion-input>
       </ion-item>
-    </ion-content>
-  </ion-grid>
-
+    </ion-list>
+    <ion-button (click)="onClick()" expand="block">Submit</ion-button>
+    <ion-button type="button" color="dark" expand="block">Cancel</ion-button>
+  </form>
 </ion-content>
+
