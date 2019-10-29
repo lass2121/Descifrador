@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'home-penyedia', loadChildren: './home-penyedia/home-penyedia.module#HomePenyediaPageModule' },
+  { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
   { path: 'sign-up-penyedia', loadChildren: './sign-up/sign-up-penyedia/sign-up-penyedia.module#SignUpPenyediaPageModule' },
   { path: 'sign-up-user', loadChildren: './sign-up/sign-up-user/sign-up-user.module#SignUpUserPageModule' },
