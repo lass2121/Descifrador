@@ -28,8 +28,11 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'request', loadChildren: './home-penyedia/request/request.module#RequestPageModule' },
   { path: 'detail-request', loadChildren: './home-penyedia/detail-request/detail-request.module#DetailRequestPageModule' },
+  { path: 'history-request', loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' },
+  { path: 'detail-acc', loadChildren: './home-penyedia/detail-acc/detail-acc.module#DetailAccPageModule' },
 
-  ];
+
+];
 
 @NgModule({
   imports: [
