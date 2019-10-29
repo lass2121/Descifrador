@@ -14,7 +14,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  onClick(){
+  onLogin(){
     this.navCtrl.navigateBack('/home-pendaftar/home');
+  }
+  onRegister(){
+    this.navCtrl.navigateBack('/sign-up');
   }
 }
