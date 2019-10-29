@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home-penyedia', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home-penyedia', children: [
     {
     path: '',
@@ -20,7 +20,7 @@ const routes: Routes = [
     ]
     },
   ] 
-},
+  },
   { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
   {
     path: 'sign-up',
