@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomePenyediaPage } from './home-penyedia.page';
+import { DetailRequestPage } from './detail-request.page';
 
-describe('HomePenyediaPage', () => {
-  let component: HomePenyediaPage;
-  let fixture: ComponentFixture<HomePenyediaPage>;
+describe('DetailRequestPage', () => {
+  let component: DetailRequestPage;
+  let fixture: ComponentFixture<DetailRequestPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePenyediaPage ],
+      declarations: [ DetailRequestPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePenyediaPage);
+    fixture = TestBed.createComponent(DetailRequestPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

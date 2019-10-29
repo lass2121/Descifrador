@@ -7,6 +7,12 @@ const routes: Routes = [
   { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'request', loadChildren: './home-penyedia/request/request.module#RequestPageModule' },
+  { path: 'detail-request', loadChildren: './home-penyedia/detail-request/detail-request.module#DetailRequestPageModule' },
+
+
+  
   ];
   
 @NgModule({

@@ -5,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePenyediaPage } from './home-penyedia.page';
+import { DetailRequestPage } from './detail-request.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomePenyediaPage
+    component: DetailRequestPage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HomePenyediaPage]
+  declarations: [DetailRequestPage]
 })
-export class HomePenyediaPageModule {}
+export class DetailRequestPageModule {}
