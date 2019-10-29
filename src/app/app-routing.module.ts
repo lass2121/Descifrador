@@ -8,7 +8,11 @@ const routes: Routes = [
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
   { path: 'sign-up-penyedia', loadChildren: './sign-up/sign-up-penyedia/sign-up-penyedia.module#SignUpPenyediaPageModule' },
   { path: 'sign-up-user', loadChildren: './sign-up/sign-up-user/sign-up-user.module#SignUpUserPageModule' },
-
+  { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
+  { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'request', loadChildren: './home-penyedia/request/request.module#RequestPageModule' },
+  { path: 'detail-request', loadChildren: './home-penyedia/detail-request/detail-request.module#DetailRequestPageModule' },
 
   ];
 
