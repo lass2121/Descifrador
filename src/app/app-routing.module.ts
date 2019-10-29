@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: 'request', pathMatch: 'full' },
   { path: 'home-penyedia', loadChildren: './home-penyedia/home-penyedia.module#HomePenyediaPageModule' },
   { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
   { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'request', loadChildren: './home-penyedia/request/request.module#RequestPageModule' },
