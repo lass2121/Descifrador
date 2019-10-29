@@ -6,8 +6,11 @@ const routes: Routes = [
   { path: 'home-penyedia', loadChildren: './home-penyedia/home-penyedia.module#HomePenyediaPageModule' },
   { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'status-penyedia', loadChildren: './status-penyedia/status-penyedia.module#StatusPenyediaPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
 
+
+  
   ];
   
 @NgModule({
