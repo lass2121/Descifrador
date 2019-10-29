@@ -8,6 +8,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'status-penyedia', loadChildren: './status-penyedia/status-penyedia.module#StatusPenyediaPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'request', loadChildren: './home-penyedia/request/request.module#RequestPageModule' },
+  { path: 'detail-request', loadChildren: './home-penyedia/detail-request/detail-request.module#DetailRequestPageModule' },
 
 
   
