@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePendaftarPage } from './home-pendaftar.page';
+import { HomePendaftarRoutingModule } from './home-pendaftar-routing.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    HomePendaftarRoutingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [HomePendaftarPage]
