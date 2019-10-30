@@ -8,5 +8,71 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input  type="text" formControlName="username" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationUname">
+            <ion-text color="danger">Please enter a valid Username </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="text" formControlName="password" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationPassword">
+            <ion-text color="danger">Please enter a valid Password </ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Re-type Password</ion-label>
+            <ion-input type="text" formControlName="reTypePassword" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationTypePassword">
+            <ion-text color="danger">Please confirm your password</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationEmail">
+            <ion-text color="danger">Please enter a valid Email</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Nama Sekolah</ion-label>
+            <ion-input type="text" formControlName="sekolah" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationSekolah">
+            <ion-text color="danger">Please enter a valid Nama Sekolah</ion-text>
+          </ion-item>
+          <ion-item style="margin-top:5%">
+            <ion-label >Jenjang Pendidikan</ion-label>
+            <ion-select placeholder="Select One">
+              <ion-select-option value="tk">TK</ion-select-option>
+              <ion-select-option value="sd">SD</ion-select-option>
+              <ion-select-option value="smp">SMP</ion-select-option>
+              <ion-select-option value="sma">SMA</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <!-- <ion-item lines="none" *ngIf="validationEmail">
+            <ion-text color="danger">Please enter a valid Email</ion-text>
+          </ion-item> -->
+          <ion-item>
+            <ion-label position="floating">No. Telepon</ion-label>
+            <ion-input type="text" formControlName="notelepon" ></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="validationNoTelepon">
+            <ion-text color="danger">Please enter a valid nomor telepon</ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="submit" color="primary" expand="block" (click)="onSubmit()">Submit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

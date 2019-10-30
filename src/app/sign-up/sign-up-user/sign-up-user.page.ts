@@ -12,6 +12,8 @@ export class SignUpUserPage implements OnInit {
   validationUname: boolean;
   validationPassword: boolean;
   validationTypePassword: boolean;
+  validationEmail: boolean;
+  validationNoTelepon: boolean;
 
   constructor(private alertCtrl: AlertController) { }
 
@@ -26,6 +28,14 @@ export class SignUpUserPage implements OnInit {
         validators: [Validators.required, Validators.minLength(8)]
       }),
       reTypePassword: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(8)]
+      }),
+      email: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(8)]
+      }),
+      notelepon: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(8)]
       })
@@ -52,6 +62,22 @@ export class SignUpUserPage implements OnInit {
         this.validationTypePassword = true;
       } else {
         this.validationTypePassword = false;
+      }
+    });
+
+    this.form.controls.email.valueChanges.subscribe(() => {
+      if (!this.form.controls.email.valid) {
+        this.validationEmail = true;
+      } else {
+        this.validationEmail = false;
+      }
+    });
+
+    this.form.controls.notelepon.valueChanges.subscribe(() => {
+      if (!this.form.controls.notelepon.valid) {
+        this.validationNoTelepon = true;
+      } else {
+        this.validationNoTelepon = false;
       }
     });
   }
