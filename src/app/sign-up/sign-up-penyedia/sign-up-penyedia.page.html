@@ -47,21 +47,21 @@
           <ion-item lines="none" *ngIf="validationSekolah">
             <ion-text color="danger">Please enter a valid Nama Sekolah</ion-text>
           </ion-item>
-          <ion-item style="margin-top:5%">
+          <ion-item style="margin-top:2%">
             <ion-label >Jenjang Pendidikan</ion-label>
-            <ion-select placeholder="Select One">
+            <ion-select placeholder="Select One" formControlName="jenjang">
               <ion-select-option value="tk">TK</ion-select-option>
               <ion-select-option value="sd">SD</ion-select-option>
               <ion-select-option value="smp">SMP</ion-select-option>
               <ion-select-option value="sma">SMA</ion-select-option>
             </ion-select>
           </ion-item>
-          <!-- <ion-item lines="none" *ngIf="validationEmail">
-            <ion-text color="danger">Please enter a valid Email</ion-text>
-          </ion-item> -->
+          <ion-item lines="none" *ngIf="validationJenjang">
+            <ion-text color="danger">Please choose one</ion-text>
+          </ion-item>
           <ion-item>
             <ion-label position="floating">No. Telepon</ion-label>
-            <ion-input type="text" formControlName="notelepon" ></ion-input>
+            <ion-input type="number" formControlName="notelepon" ></ion-input>
           </ion-item>
           <ion-item lines="none" *ngIf="validationNoTelepon">
             <ion-text color="danger">Please enter a valid nomor telepon</ion-text>

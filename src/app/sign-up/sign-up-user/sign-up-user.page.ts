@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-user',
@@ -9,13 +10,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class SignUpUserPage implements OnInit {
   form: FormGroup;
-  validationUname: boolean;
-  validationPassword: boolean;
-  validationTypePassword: boolean;
-  validationEmail: boolean;
-  validationNoTelepon: boolean;
+  validationUname = false;
+  validationPassword = false;
+  validationTypePassword = false;
+  validationEmail = false;
+  validationNoTelepon = false;
 
-  constructor(private alertCtrl: AlertController) { }
+  constructor(private alertCtrl: AlertController, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -84,16 +85,27 @@ export class SignUpUserPage implements OnInit {
 
   onSubmit() {
     // tslint:disable-next-line: max-line-length
-    if (this.validationUname !== true && this.validationPassword !== true && this.validationTypePassword) {
-      // this.offer = new Place(
-      //   this.form.value.offerId,
-      //   this.form.value.placeTitle,
-      //   this.form.value.description,
-      //   this.form.value.imgUrl,
-      //   this.form.value.price
-      // );
-      // this.offerService.editOffer(this.offer, this.detailOffer.id);
-      // this.router.navigate(['/places/tabs/offers']);
+    if (this.validationUname !== true && this.validationPassword !== true && this.validationTypePassword !== true && this.validationEmail !== true && this.validationNoTelepon !== true) {
+      // tslint:disable-next-line: max-line-length
+      if (this.form.value.username !== null && this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null) {
+        this.router.navigate(['/login']);
+      } else {
+        if(this.form.value.username === null) {
+          this.validationUname = true;
+        }
+        if (this.form.value.password === null) {
+          this.validationPassword = true;
+        }
+        if (this.form.value.reTypePassword === null) {
+          this.validationTypePassword = true;
+        }
+        if (this.form.value.email === null) {
+          this.validationEmail = true;
+        }
+        if (this.form.value.notelepon === null) {
+          this.validationNoTelepon = true;
+        }
+      }
     } else {
       this.presentAlert();
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +8,23 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  form: FormGroup;
+  validationUname = false;
+  validationPassword = false;
+  validationLoginAs = false;
 
   constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
+    
   }
 
   onLogin(){
-    this.navCtrl.navigateBack('/home-pendaftar');
+    this.navCtrl.navigateBack('/home-penyedia');
   }
   onRegister(){
     this.navCtrl.navigateBack('/sign-up');
   }
+
+  
 }
