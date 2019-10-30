@@ -14,6 +14,10 @@ const routes: Routes = [
                         path: '',
                         loadChildren: './home/home.module#HomePageModule'
                     },
+                    {
+                        path: ':offerId',
+                        loadChildren: './home/home-detail/home-detail.module#HomeDetailPageModule'
+                    }
                 ]
             },
             {
@@ -23,6 +27,10 @@ const routes: Routes = [
                         path: '',
                         loadChildren: './status/status.module#StatusPageModule'
                     },
+                    {
+                        path: ':requestId',
+                        loadChildren: './status/status-detail/status-detail.module#StatusDetailPageModule',
+                    }
                 ]
             },
             {
@@ -36,7 +44,7 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home-pendaftar/tabs/home',
         pathMatch: 'full'
-    }
+    },
 ];
 
 @NgModule({

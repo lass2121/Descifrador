@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Request Kegiatan</ion-title>
+    <ion-buttons>
+      <ion-back-button defaultHref="/home-pendaftar"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nama Kegiatan</ion-label>
+        <ion-input type="text"  name="nama"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Deskripsi Kegiatan</ion-label>
+        <ion-input type="text" name="deskripsi"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Jumlah Peserta</ion-label>
+        <ion-input type="number" name="jumlah"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="onSubmit()" type="button" expand="block">Submit</ion-button>
+    <ion-button (click)="onCancel()" type="button" expand="block" fill="clear">Cancel</ion-button>
+  </form>
+</ion-content>
