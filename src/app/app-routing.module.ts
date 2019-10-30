@@ -19,6 +19,14 @@ const routes: Routes = [
         },
     ]
     },
+    { 
+      path: 'history-request', 
+      loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' 
+      },
+    { 
+      path: ':requestId', 
+      loadChildren: './home-penyedia/detail-acc/detail-acc.module#DetailAccPageModule' 
+    },
   ] 
   },
   { path: 'home-pendaftar', loadChildren: './home-pendaftar/home-pendaftar.module#HomePendaftarPageModule' },
@@ -40,11 +48,11 @@ const routes: Routes = [
     ]
   },
 
-  { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
-  { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
+  // { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
+  // { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'history-request', loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' },
-  { path: 'detail-acc', loadChildren: './home-penyedia/detail-acc/detail-acc.module#DetailAccPageModule' },
+  
+  
 
 
 ];

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Daftar Yang Diterima</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="goBack()"><ion-icon name='arrow-back' slot="icon-only"></ion-icon></ion-button>
+        <ion-back-button text="" defaultHref="/home-penyedia"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="goBack()"><ion-icon name='trash' slot="icon-only"></ion-icon></ion-button>
@@ -16,10 +16,30 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title text-center style="font-size: 17px;">
-              Daftar History Request
+              Detail Request Yang di-Acc
             </ion-card-title>
           </ion-card-header>
+          <ion-list>
+              <ion-item>
+                <ion-label position="stacked">Nama Kegiatan</ion-label>
+                <ion-input type="text" readonly value="Main bola"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
+                <ion-input type="text"  readonly value="battle royal main bola bersama semua murid"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">Jumlah Peserta</ion-label>
+                <ion-input type="number" readonly value="10000"></ion-input>
+              </ion-item>
+            </ion-list>
         </ion-card>
+        <ion-card>  
+            <ion-item>
+              <ion-label position="stacked">Feedback</ion-label>
+              <ion-textarea readonly value="feedback here"></ion-textarea>
+            </ion-item>
+          </ion-card>
       </ion-col>
   </ion-grid>
 </ion-content>

@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   }
 
   onLogin(){
-    this.navCtrl.navigateBack('/home-pendaftar/home');
+    this.navCtrl.navigateBack('/home-pendaftar');
   }
   onRegister(){
     this.navCtrl.navigateBack('/sign-up');
