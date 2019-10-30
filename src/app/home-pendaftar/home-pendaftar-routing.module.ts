@@ -12,7 +12,7 @@ const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: './discover/discover.module#DiscoverPageModule'
+                        loadChildren: './home/home.module#HomePageModule'
                     },
                 ]
             },
@@ -21,20 +21,20 @@ const routes: Routes = [
                 children: [ // the order matters, hardcoded path must go before the dynamic path or else
                     {
                         path: '',
-                        loadChildren: './offers/offers.module#OffersPageModule'
+                        loadChildren: './status/status.module#StatusPageModule'
                     },
                 ]
             },
             {
                 path: '',
-                redirectTo: '/places/tabs/discover',
+                redirectTo: '/home-pendaftar/tabs/home',
                 pathMatch: 'full'
             }
         ]
     },
     {
         path: '',
-        redirectTo: '/places/tabs/discover',
+        redirectTo: '/home-pendaftar/tabs/home',
         pathMatch: 'full'
     }
 ];
