@@ -20,9 +20,17 @@ const routes: Routes = [
     ]
     },
     { 
-      path: 'history-request', 
-      loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' 
-      },
+      path: 'history-request', children: [
+        {
+          path: '',
+          loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' 
+        },
+        { 
+          path: ':historyId',
+          loadChildren: './home-penyedia/history-request/history-request-detail/history-request-detail.module#HistoryRequestDetailPageModule' 
+          },
+      ]
+    },
     { 
       path: ':requestId', 
       loadChildren: './home-penyedia/detail-acc/detail-acc.module#DetailAccPageModule' 
@@ -51,6 +59,7 @@ const routes: Routes = [
   // { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
   // { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+
   
   
 
