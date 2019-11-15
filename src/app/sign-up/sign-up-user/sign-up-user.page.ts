@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -9,20 +9,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up-user.page.scss'],
 })
 export class SignUpUserPage implements OnInit {
-  form: FormGroup;
-  validationUname = false;
+
+  @ViewChild('signupUserSlider', { static: false,}) signupUserSlider;
+
+  formOne: FormGroup;
+  formTwo: FormGroup;
+  validationEmail = false;
   validationPassword = false;
   validationTypePassword = false;
-  validationEmail = false;
-  validationNoTelepon = false;
+  validationName = false;
+  validationAge = false;
+  validationOccupation = false;
+  validationNoTelephone = false;
+  
+  
 
   constructor(private alertCtrl: AlertController, private router: Router) { }
 
+  //  next(){
+  //   this.signupUserSlider.slideNext();
+  // }
+
+  // prev(){
+  //   this.signupUserSlider.slidePrev();
+  // }
+
   ngOnInit() {
-    this.form = new FormGroup({
-      username: new FormControl(null, {
+    this.formOne = new FormGroup({
+      email: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(1)]
+        validators: [Validators.required, Validators.minLength(8)]
       }),
       password: new FormControl(null, {
         updateOn: 'change',
@@ -32,79 +48,118 @@ export class SignUpUserPage implements OnInit {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(8)]
       }),
-      email: new FormControl(null, {
+    });
+
+    this.formTwo = new FormGroup({
+      name: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(8)]
       }),
-      notelepon: new FormControl(null, {
+      age: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(8)]
+      }),
+      occupation: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(8)]
+      }),
+      notelephone: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(8)]
       })
     });
 
-    this.form.controls.username.valueChanges.subscribe(() => {
-      if (!this.form.controls.username.valid) {
-        this.validationUname = true;
+    this.formOne.controls.email.valueChanges.subscribe(() => {
+      if (!this.formOne.controls.email.valid) {
+        this.validationEmail = true;
       } else {
-        this.validationUname = false;
+        this.validationEmail = false;
       }
     });
-
-    this.form.controls.password.valueChanges.subscribe(() => {
-      if (!this.form.controls.password.valid) {
+   
+    this.formOne.controls.password.valueChanges.subscribe(() => {
+      if (!this.formOne.controls.password.valid) {
         this.validationPassword = true;
       } else {
         this.validationPassword = false;
       }
     });
 
-    this.form.controls.reTypePassword.valueChanges.subscribe(() => {
-      if (!this.form.controls.reTypePassword.valid) {
+    this.formOne.controls.reTypePassword.valueChanges.subscribe(() => {
+      if (!this.formOne.controls.reTypePassword.valid) {
         this.validationTypePassword = true;
       } else {
         this.validationTypePassword = false;
       }
     });
 
-    this.form.controls.email.valueChanges.subscribe(() => {
-      if (!this.form.controls.email.valid) {
-        this.validationEmail = true;
+   this.formTwo.controls.name.valueChanges.subscribe(() => {
+      if (!this.formTwo.controls.name.valid) {
+        this.validationName = true;
       } else {
-        this.validationEmail = false;
+        this.validationName = false;
+      }
+    });
+   
+    this.formTwo.controls.age.valueChanges.subscribe(() => {
+      if (!this.formTwo.controls.age.valid) {
+        this.validationAge = true;
+      } else {
+        this.validationAge = false;
       }
     });
 
-    this.form.controls.notelepon.valueChanges.subscribe(() => {
-      if (!this.form.controls.notelepon.valid) {
-        this.validationNoTelepon = true;
+    this.formTwo.controls.occupation.valueChanges.subscribe(() => {
+      if (!this.formTwo.controls.occupation.valid) {
+        this.validationOccupation = true;
       } else {
-        this.validationNoTelepon = false;
+        this.validationOccupation = false;
       }
     });
+
+    this.formTwo.controls.notelephone.valueChanges.subscribe(() => {
+      if (!this.formTwo.controls.notelephone.valid) {
+        this.validationNoTelephone = true;
+      } else {
+        this.validationNoTelephone = false;
+      }
+    });
+
   }
 
   onSubmit() {
     // tslint:disable-next-line: max-line-length
-    if (this.validationUname !== true && this.validationPassword !== true && this.validationTypePassword !== true && this.validationEmail !== true && this.validationNoTelepon !== true) {
+    if (this.validationEmail !== true  && this.validationPassword !== true && this.validationTypePassword 
+      !== true && this.validationName !== true && this.validationAge !== true && this.validationOccupation !== true 
+      && this.validationNoTelephone !== true) {
       // tslint:disable-next-line: max-line-length
-      if (this.form.value.username !== null && this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null) {
+      if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null 
+        && this.formTwo.value.name !== null && this.formTwo.value.age !== null 
+        && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
         this.router.navigate(['/login']);
       } else {
-        if(this.form.value.username === null) {
-          this.validationUname = true;
-        }
-        if (this.form.value.password === null) {
-          this.validationPassword = true;
-        }
-        if (this.form.value.reTypePassword === null) {
-          this.validationTypePassword = true;
-        }
-        if (this.form.value.email === null) {
+        if (this.formOne.value.email === null) {
           this.validationEmail = true;
         }
-        if (this.form.value.notelepon === null) {
-          this.validationNoTelepon = true;
+        if (this.formOne.value.password === null) {
+          this.validationPassword = true;
         }
+        if (this.formOne.value.reTypePassword === null) {
+          this.validationTypePassword = true;
+        }
+        if(this.formTwo.value.name === null){
+          this.validationName = true
+        }
+        if(this.formTwo.value.age === null){
+          this.validationAge = true
+        }
+        if(this.formTwo.value.occupation === null){
+          this.validationOccupation = true
+        }
+        if(this.formTwo.value.notelephone === null){
+          this.validationNoTelephone = true
+        }
+
       }
     } else {
       this.presentAlert();

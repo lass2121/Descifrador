@@ -38,13 +38,15 @@
             Daftar Yang Sudah Di Accept
           </ion-card-title>
         </ion-card-header>
+        <ion-card-content>
+          <ion-item [routerLink]="['./r1']">
+            <ion-label>Request Accept 1</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['./r2']">
+            <ion-label>Request Accept 2</ion-label>
+          </ion-item>
+        </ion-card-content>
       </ion-card>
-      <ion-item [routerLink]="['./r1']">
-          <ion-label>Request Accept 1</ion-label>
-        </ion-item>
-        <ion-item [routerLink]="['./r2']">
-          <ion-label>Request Accept 2</ion-label>
-        </ion-item>
     </ion-col>
   </ion-grid>
 </ion-content>
