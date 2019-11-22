@@ -62,6 +62,13 @@
                         <ion-text color="danger">Please enter a valid Age </ion-text>
                       </ion-item>
                       <ion-item>
+                        <ion-label position="floating">Gender</ion-label>
+                        <ion-input type="text" formControlName="gender" ></ion-input>
+                      </ion-item>
+                      <ion-item lines="none" *ngIf="validationGender">
+                        <ion-text color="danger">Please enter a valid Gender </ion-text>
+                      </ion-item>
+                      <ion-item>
                         <ion-label position="floating">Occupation</ion-label>
                         <ion-input type="text" formControlName="occupation" ></ion-input>
                       </ion-item>
