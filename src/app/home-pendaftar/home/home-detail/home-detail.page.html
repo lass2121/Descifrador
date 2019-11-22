@@ -22,7 +22,7 @@
         <ion-input type="text"  name="nama"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
+        <ion-label position="stacked">Tujuan Kegiatan</ion-label>
         <ion-input type="text" name="deskripsi"></ion-input>
       </ion-item>
       <ion-item>
@@ -31,7 +31,19 @@
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Tanggal Kegiatan</ion-label>
-        <ion-input type="date" name="jumlah"></ion-input>
+        <ion-datetime displayFormat="DD-MM-YYYY" min="2019" max="2999"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Waktu Mulai Kegiatan</ion-label>
+        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Waktu Selesai Kegiatan</ion-label>
+        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
+        <ion-textarea rows="10" cols="20"></ion-textarea>
       </ion-item>
     </ion-list>
     <ion-button (click)="onSubmit()" type="button" expand="block">Submit</ion-button>

@@ -44,7 +44,10 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home-pendaftar/tabs/home',
         pathMatch: 'full'
-    },
+    },  { path: 'info-pendaftar', loadChildren: './info-pendaftar/info-pendaftar.module#InfoPendaftarPageModule' },
+
+  
+
 ];
 
 @NgModule({
