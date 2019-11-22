@@ -21,8 +21,7 @@ export class SignUpUserPage implements OnInit {
   validationAge = false;
   validationOccupation = false;
   validationNoTelephone = false;
-  
-  
+  validationGender = false;
 
   constructor(private alertCtrl: AlertController, private router: Router) { }
 
@@ -53,19 +52,23 @@ export class SignUpUserPage implements OnInit {
     this.formTwo = new FormGroup({
       name: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.minLength(1)]
       }),
       age: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.minLength(1)]
       }),
       occupation: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.minLength(1)]
       }),
       notelephone: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.minLength(12)]
+      }),
+      gender: new FormControl(null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(4)]
       })
     });
 
@@ -76,7 +79,7 @@ export class SignUpUserPage implements OnInit {
         this.validationEmail = false;
       }
     });
-   
+
     this.formOne.controls.password.valueChanges.subscribe(() => {
       if (!this.formOne.controls.password.valid) {
         this.validationPassword = true;
@@ -93,14 +96,14 @@ export class SignUpUserPage implements OnInit {
       }
     });
 
-   this.formTwo.controls.name.valueChanges.subscribe(() => {
-      if (!this.formTwo.controls.name.valid) {
-        this.validationName = true;
-      } else {
-        this.validationName = false;
-      }
-    });
-   
+    this.formTwo.controls.name.valueChanges.subscribe(() => {
+        if (!this.formTwo.controls.name.valid) {
+          this.validationName = true;
+        } else {
+          this.validationName = false;
+        }
+      });
+
     this.formTwo.controls.age.valueChanges.subscribe(() => {
       if (!this.formTwo.controls.age.valid) {
         this.validationAge = true;
@@ -125,16 +128,24 @@ export class SignUpUserPage implements OnInit {
       }
     });
 
+    this.formTwo.controls.gender.valueChanges.subscribe(() => {
+      if (!this.formTwo.controls.gender.valid) {
+        this.validationGender = true;
+      } else {
+        this.validationGender = false;
+      }
+    });
+
   }
 
   onSubmit() {
     // tslint:disable-next-line: max-line-length
-    if (this.validationEmail !== true  && this.validationPassword !== true && this.validationTypePassword 
-      !== true && this.validationName !== true && this.validationAge !== true && this.validationOccupation !== true 
+    if (this.validationEmail !== true  && this.validationPassword !== true && this.validationTypePassword
+      !== true && this.validationName !== true && this.validationAge !== true && this.validationOccupation !== true
       && this.validationNoTelephone !== true) {
       // tslint:disable-next-line: max-line-length
-      if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null 
-        && this.formTwo.value.name !== null && this.formTwo.value.age !== null 
+      if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null
+        && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
         this.router.navigate(['/login']);
       } else {
@@ -147,17 +158,20 @@ export class SignUpUserPage implements OnInit {
         if (this.formOne.value.reTypePassword === null) {
           this.validationTypePassword = true;
         }
-        if(this.formTwo.value.name === null){
-          this.validationName = true
+        if (this.formTwo.value.name === null) {
+          this.validationName = true;
         }
-        if(this.formTwo.value.age === null){
-          this.validationAge = true
+        if (this.formTwo.value.age === null) {
+          this.validationAge = true;
         }
-        if(this.formTwo.value.occupation === null){
-          this.validationOccupation = true
+        if (this.formTwo.value.occupation === null) {
+          this.validationOccupation = true;
         }
-        if(this.formTwo.value.notelephone === null){
-          this.validationNoTelephone = true
+        if (this.formTwo.value.notelephone === null) {
+          this.validationNoTelephone = true;
+        }
+        if (this.formTwo.value.gender === null) {
+          this.validationGender = true;
         }
 
       }
