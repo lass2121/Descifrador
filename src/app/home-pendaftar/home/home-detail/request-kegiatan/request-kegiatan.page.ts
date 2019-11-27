@@ -1,3 +1,4 @@
+import { HomePendaftarService } from './../../../home-pendaftar.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RequestKegiatanPage implements OnInit {
   form: FormGroup;
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private homePendaftarSvc: HomePendaftarService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -48,10 +49,25 @@ export class RequestKegiatanPage implements OnInit {
 
   onSubmit(){
     console.log(this.form.value);
-    let start_time =  this.form.value.start_time
+    let start_time =  this.form.value.start_time;
     start_time = start_time.substring(11,16);
-    let end_time =  this.form.value.end_time
+    let end_time =  this.form.value.end_time;
     end_time = end_time.substring(11,16);
+    let date = this.form.value.date
+    date = date.substring(0,10);
+
+    const data = {};
+    data['nama'] = this.form.value.nama;
+    data['tujuan'] = this.form.value.tujuan;
+    data['jumlah'] = this.form.value.jumlah;
+    data['desc'] = this.form.value.desc;
+    data['date'] = date;
+    data['start_time'] = start_time;
+    data['end_time'] = end_time;
+    data['status'] = 'Waiting Approval';
+
+
+    this.homePendaftarSvc.addRequest(data);
 
     // this.navCtrl.navigateBack('/home-pendaftar/home');
   }

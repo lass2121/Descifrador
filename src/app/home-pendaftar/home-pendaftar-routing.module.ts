@@ -15,9 +15,13 @@ const routes: Routes = [
                         loadChildren: './home/home.module#HomePageModule'
                     },
                     {
-                        path: ':offerId',
+                        path: ':schoolId',
                         loadChildren: './home/home-detail/home-detail.module#HomeDetailPageModule'
-                    }
+                    },
+                    {
+                        path: 'request-kegiatan/:schoolId',
+                        loadChildren: './home/home-detail/request-kegiatan/request-kegiatan.module#RequestKegiatanPageModule'
+                    },
                 ]
             },
             {
@@ -44,7 +48,9 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home-pendaftar/tabs/home',
         pathMatch: 'full'
-    },  { path: 'info-pendaftar', loadChildren: './info-pendaftar/info-pendaftar.module#InfoPendaftarPageModule' },
+    },
+  { path: 'info-pendaftar', loadChildren: './info-pendaftar/info-pendaftar.module#InfoPendaftarPageModule' },
+  { path: 'request-kegiatan', loadChildren: './home/home-detail/request-kegiatan/request-kegiatan.module#RequestKegiatanPageModule' },
 
   
 
