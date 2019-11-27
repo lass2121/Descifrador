@@ -4,22 +4,6 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SignUpService } from '../sign-up.service';
 
-// declare var require: any;
-
-
-// // Initialize Cloud Firestore through Firebase
-// const firebase = require('firebase');
-// // Required for side-effects
-// require('firebase/firestore');
-
-// firebase.initializeApp({
-//   apiKey: 'AIzaSyDlqJ1UqZn5GJzY5SZa9gIck7Rg167fDkk',
-//   authDomain: 'descifrador-1db9a.firebaseapp.com',
-//   projectId: 'descifrador-1db9a'
-// });
-
-// const db = firebase.firestore();
-
 @Component({
   selector: 'app-sign-up-user',
   templateUrl: './sign-up-user.page.html',
@@ -52,19 +36,6 @@ export class SignUpUserPage implements OnInit {
   // }
 
   ngOnInit() {
-    // this.signUpSrvc.readUsers().subscribe(data => {
-
-    //   this.users = data.map(e => {
-    //     return {
-    //       born : e.payload.doc.data()['born'],
-    //       first : e.payload.doc.data()['first'],
-    //       last : e.payload.doc.data()['last']
-    //     };
-    //   });
-    //   console.log(this.users);
-
-    // });
-
     this.formOne = new FormGroup({
       email: new FormControl(null, {
         updateOn: 'change',
@@ -177,13 +148,7 @@ export class SignUpUserPage implements OnInit {
       if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null
         && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
-          const data = {};
-          data['name'] = this.formTwo.value.name;
-          data['age'] = this.formTwo.value.age;
-          data['gender'] = this.formTwo.value.gender;
-          data['occupation'] = this.formTwo.value.occupation;
-          data['phoneNumber'] = this.formTwo.value.notelephone;
-          this.signUpSrvc.addUsers(data);
+          this.Register();
           // console.log(data);
           // this.router.navigate(['/login']);
       } else {
@@ -218,29 +183,21 @@ export class SignUpUserPage implements OnInit {
     }
   }
 
-  // test() {
-  //   db.collection('users').add({
-  //     first: 'Alan',
-  //     middle: 'Mathison',
-  //     last: 'Turing',
-  //     born: 1912
-  //   })
-  //   .then((docRef) => {
-  //     console.log('Document written with ID: ', docRef.id);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error adding document: ', error);
-  //   });
-  // }
-
-  // testGet() {
-  //   db.collection('users').get().then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //         console.log(doc.data().first);
-  //     });
-  // });
-  // }
-
+  Register() {
+    this.signUpSrvc.registerUser(this.formOne.value)
+    .then(res => {
+      const data = {};
+      data['name'] = this.formTwo.value.name;
+      data['age'] = this.formTwo.value.age;
+      data['gender'] = this.formTwo.value.gender;
+      data['occupation'] = this.formTwo.value.occupation;
+      data['phoneNumber'] = this.formTwo.value.notelephone;
+      data['userID'] = res.user.uid;
+      this.signUpSrvc.addUsers(data);
+    }, err => {
+      console.log(err);
+    });
+  }
 
   async presentAlert() {
     const alert = await this.alertCtrl.create({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-sign-up-penyedia',
@@ -19,7 +20,7 @@ export class SignUpPenyediaPage implements OnInit {
   validationJenjang = false;
   validationAddress = false;
 
-  constructor(private alertCtrl: AlertController, private router: Router) { }
+  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -55,14 +56,6 @@ export class SignUpPenyediaPage implements OnInit {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(1)]
       })
-    });
-
-    this.form.controls.username.valueChanges.subscribe(() => {
-      if (!this.form.controls.username.valid) {
-        this.validationUname = true;
-      } else {
-        this.validationUname = false;
-      }
     });
 
     this.form.controls.password.valueChanges.subscribe(() => {
@@ -126,12 +119,9 @@ export class SignUpPenyediaPage implements OnInit {
     // tslint:disable-next-line: max-line-length
     if (this.validationUname !== true && this.validationPassword !== true && this.validationTypePassword !== true && this.validationEmail !== true && this.validationNoTelepon !== true && this.validationSekolah !== true && this.validationJenjang !== true && this.validationAddress !== true) {
       // tslint:disable-next-line: max-line-length
-      if (this.form.value.username !== null && this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null && this.form.value.sekolah !== null && this.form.value.jenjang !== null && this.form.value.address !== null) {
-        this.router.navigate(['/login']);
+      if (this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null && this.form.value.sekolah !== null && this.form.value.jenjang !== null && this.form.value.address !== null) {
+        this.Register();
       } else {
-        if(this.form.value.username === null) {
-          this.validationUname = true;
-        }
         if (this.form.value.password === null) {
           this.validationPassword = true;
         }
@@ -157,6 +147,21 @@ export class SignUpPenyediaPage implements OnInit {
     } else {
       this.presentAlert();
     }
+  }
+
+  Register() {
+    this.signUpSrvc.registerUser(this.form.value)
+    .then(res => {
+      const data = {};
+      data['schoolName'] = this.form.value.sekolah;
+      data['address'] = this.form.value.address;
+      data['educationalStage'] = this.form.value.jenjang;
+      data['phoneNumber'] = this.form.value.notelepon;
+      data['userID'] = res.user.uid;
+      this.signUpSrvc.addPenyedia(data);
+    }, err => {
+      console.log(err);
+    });
   }
 
   async presentAlert() {
