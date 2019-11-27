@@ -38,7 +38,7 @@ export class SignUpPenyediaPage implements OnInit {
       }),
       email: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]
       }),
       notelepon: new FormControl(null, {
         updateOn: 'change',
@@ -120,8 +120,12 @@ export class SignUpPenyediaPage implements OnInit {
     if (this.validationUname !== true && this.validationPassword !== true && this.validationTypePassword !== true && this.validationEmail !== true && this.validationNoTelepon !== true && this.validationSekolah !== true && this.validationJenjang !== true && this.validationAddress !== true) {
       // tslint:disable-next-line: max-line-length
       if (this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null && this.form.value.sekolah !== null && this.form.value.jenjang !== null && this.form.value.address !== null) {
-        this.Register();
-        this.router.navigate(['/login']);
+        if(this.form.value.password === this.form.value.reTypePassword) {
+          this.Register();
+          this.router.navigate(['/login']);
+        } else {
+          this.validationTypePassword = true;
+        }
       } else {
         if (this.form.value.password === null) {
           this.validationPassword = true;

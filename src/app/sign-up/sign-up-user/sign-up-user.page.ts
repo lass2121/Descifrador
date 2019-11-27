@@ -39,7 +39,7 @@ export class SignUpUserPage implements OnInit {
     this.formOne = new FormGroup({
       email: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(8)]
+        validators: [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]
       }),
       password: new FormControl(null, {
         updateOn: 'change',
@@ -148,8 +148,12 @@ export class SignUpUserPage implements OnInit {
       if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null
         && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
-          this.Register();
-          this.router.navigate(['/login']);
+          if(this.formOne.value.password === this.formOne.value.reTypePassword) {
+            this.Register();
+            this.router.navigate(['/login']);
+          } else {
+            this.validationTypePassword = true;
+          }
       } else {
         if (this.formOne.value.email === null) {
           this.validationEmail = true;

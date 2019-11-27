@@ -31,13 +31,13 @@ export class SignUpService {
     });
   }
 
-  loginUser(val: any){
+  loginUser(val: any) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(val.email, val.password)
         .then(
           ress => resolve(ress),
           err => reject(err)
-        )
-    })
+        );
+    });
   }
 }
