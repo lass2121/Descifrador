@@ -2,6 +2,23 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SignUpService } from '../sign-up.service';
+
+// declare var require: any;
+
+
+// // Initialize Cloud Firestore through Firebase
+// const firebase = require('firebase');
+// // Required for side-effects
+// require('firebase/firestore');
+
+// firebase.initializeApp({
+//   apiKey: 'AIzaSyDlqJ1UqZn5GJzY5SZa9gIck7Rg167fDkk',
+//   authDomain: 'descifrador-1db9a.firebaseapp.com',
+//   projectId: 'descifrador-1db9a'
+// });
+
+// const db = firebase.firestore();
 
 @Component({
   selector: 'app-sign-up-user',
@@ -10,7 +27,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpUserPage implements OnInit {
 
-  @ViewChild('signupUserSlider', { static: false,}) signupUserSlider;
+  @ViewChild('signupUserSlider', { static: false, }) signupUserSlider;
 
   formOne: FormGroup;
   formTwo: FormGroup;
@@ -22,8 +39,9 @@ export class SignUpUserPage implements OnInit {
   validationOccupation = false;
   validationNoTelephone = false;
   validationGender = false;
+  users: any;
 
-  constructor(private alertCtrl: AlertController, private router: Router) { }
+  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService) { }
 
   //  next(){
   //   this.signupUserSlider.slideNext();
@@ -34,6 +52,19 @@ export class SignUpUserPage implements OnInit {
   // }
 
   ngOnInit() {
+    // this.signUpSrvc.readUsers().subscribe(data => {
+
+    //   this.users = data.map(e => {
+    //     return {
+    //       born : e.payload.doc.data()['born'],
+    //       first : e.payload.doc.data()['first'],
+    //       last : e.payload.doc.data()['last']
+    //     };
+    //   });
+    //   console.log(this.users);
+
+    // });
+
     this.formOne = new FormGroup({
       email: new FormControl(null, {
         updateOn: 'change',
@@ -64,7 +95,7 @@ export class SignUpUserPage implements OnInit {
       }),
       notelephone: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(12)]
+        validators: [Validators.required, Validators.minLength(1)]
       }),
       gender: new FormControl(null, {
         updateOn: 'change',
@@ -135,7 +166,6 @@ export class SignUpUserPage implements OnInit {
         this.validationGender = false;
       }
     });
-
   }
 
   onSubmit() {
@@ -147,7 +177,15 @@ export class SignUpUserPage implements OnInit {
       if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null
         && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
-        this.router.navigate(['/login']);
+          const data = {};
+          data['name'] = this.formTwo.value.name;
+          data['age'] = this.formTwo.value.age;
+          data['gender'] = this.formTwo.value.gender;
+          data['occupation'] = this.formTwo.value.occupation;
+          data['phoneNumber'] = this.formTwo.value.notelephone;
+          this.signUpSrvc.addUsers(data);
+          // console.log(data);
+          // this.router.navigate(['/login']);
       } else {
         if (this.formOne.value.email === null) {
           this.validationEmail = true;
@@ -180,6 +218,30 @@ export class SignUpUserPage implements OnInit {
     }
   }
 
+  // test() {
+  //   db.collection('users').add({
+  //     first: 'Alan',
+  //     middle: 'Mathison',
+  //     last: 'Turing',
+  //     born: 1912
+  //   })
+  //   .then((docRef) => {
+  //     console.log('Document written with ID: ', docRef.id);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error adding document: ', error);
+  //   });
+  // }
+
+  // testGet() {
+  //   db.collection('users').get().then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //         console.log(doc.data().first);
+  //     });
+  // });
+  // }
+
+
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Invalid',
@@ -189,5 +251,4 @@ export class SignUpUserPage implements OnInit {
 
     await alert.present();
   }
-
 }
