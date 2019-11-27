@@ -149,8 +149,7 @@ export class SignUpUserPage implements OnInit {
         && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
           this.Register();
-          // console.log(data);
-          // this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
       } else {
         if (this.formOne.value.email === null) {
           this.validationEmail = true;
