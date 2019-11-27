@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-sign-up-user',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpUserPage implements OnInit {
 
-  @ViewChild('signupUserSlider', { static: false,}) signupUserSlider;
+  @ViewChild('signupUserSlider', { static: false, }) signupUserSlider;
 
   formOne: FormGroup;
   formTwo: FormGroup;
@@ -22,8 +23,9 @@ export class SignUpUserPage implements OnInit {
   validationOccupation = false;
   validationNoTelephone = false;
   validationGender = false;
+  users: any;
 
-  constructor(private alertCtrl: AlertController, private router: Router) { }
+  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService) { }
 
   //  next(){
   //   this.signupUserSlider.slideNext();
@@ -64,7 +66,7 @@ export class SignUpUserPage implements OnInit {
       }),
       notelephone: new FormControl(null, {
         updateOn: 'change',
-        validators: [Validators.required, Validators.minLength(12)]
+        validators: [Validators.required, Validators.minLength(1)]
       }),
       gender: new FormControl(null, {
         updateOn: 'change',
@@ -135,7 +137,6 @@ export class SignUpUserPage implements OnInit {
         this.validationGender = false;
       }
     });
-
   }
 
   onSubmit() {
@@ -147,7 +148,9 @@ export class SignUpUserPage implements OnInit {
       if (this.formOne.value.email !== null && this.formOne.value.password !== null && this.formOne.value.reTypePassword !== null
         && this.formTwo.value.name !== null && this.formTwo.value.age !== null && this.formTwo.value.gender !== null
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
-        this.router.navigate(['/login']);
+          this.Register();
+          // console.log(data);
+          // this.router.navigate(['/login']);
       } else {
         if (this.formOne.value.email === null) {
           this.validationEmail = true;
@@ -180,6 +183,22 @@ export class SignUpUserPage implements OnInit {
     }
   }
 
+  Register() {
+    this.signUpSrvc.registerUser(this.formOne.value)
+    .then(res => {
+      const data = {};
+      data['name'] = this.formTwo.value.name;
+      data['age'] = this.formTwo.value.age;
+      data['gender'] = this.formTwo.value.gender;
+      data['occupation'] = this.formTwo.value.occupation;
+      data['phoneNumber'] = this.formTwo.value.notelephone;
+      data['userID'] = res.user.uid;
+      this.signUpSrvc.addUsers(data);
+    }, err => {
+      console.log(err);
+    });
+  }
+
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Invalid',
@@ -189,5 +208,4 @@ export class SignUpUserPage implements OnInit {
 
     await alert.present();
   }
-
 }

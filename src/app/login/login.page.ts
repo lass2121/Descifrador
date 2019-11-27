@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NavController, AlertController } from '@ionic/angular';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,9 @@ export class LoginPage implements OnInit {
   validationUname = false;
   validationPassword = false;
   validationLoginAs = false;
+  users: any;
 
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController) { }
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private signUpSrvc: SignUpService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -60,9 +62,20 @@ export class LoginPage implements OnInit {
     if (this.validationUname !== true && this.validationPassword !== true && this.validationLoginAs !== true) {
       // tslint:disable-next-line: max-line-length
       if (this.form.value.username !== null && this.form.value.password !== null && this.form.value.loginAs !== null) {
-        console.log(this.form.value.loginAs);
-        if(this.form.value.loginAs === 'penyedia') {
-          this.navCtrl.navigateForward(['/home-penyedia']);
+        // console.log(this.form.value.loginAs);
+        this.signUpSrvc.readUsers().subscribe(data => {
+
+        this.users = data.map(e => {
+          return {
+            name : e.payload.doc.data()['name']
+          };
+        });
+        // console.log(this.users[0].name);
+
+        });
+
+        if(this.form.value.username === 'this.users[0].name') {
+          this.navCtrl.navigateForward(['/home-pendaftar']);
         } else {
           this.navCtrl.navigateForward(['/home-pendaftar']);
         }

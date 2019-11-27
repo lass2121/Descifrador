@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { SignUpService } from '../sign-up.service';
 
 @Component({
   selector: 'app-sign-up-penyedia',
@@ -19,7 +20,7 @@ export class SignUpPenyediaPage implements OnInit {
   validationJenjang = false;
   validationAddress = false;
 
-  constructor(private alertCtrl: AlertController, private router: Router) { }
+  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -144,6 +145,21 @@ export class SignUpPenyediaPage implements OnInit {
     } else {
       this.presentAlert();
     }
+  }
+
+  Register() {
+    this.signUpSrvc.registerUser(this.form.value)
+    .then(res => {
+      const data = {};
+      data['schoolName'] = this.form.value.sekolah;
+      data['address'] = this.form.value.address;
+      data['educationalStage'] = this.form.value.jenjang;
+      data['phoneNumber'] = this.form.value.notelepon;
+      data['userID'] = res.user.uid;
+      this.signUpSrvc.addPenyedia(data);
+    }, err => {
+      console.log(err);
+    });
   }
 
   async presentAlert() {
