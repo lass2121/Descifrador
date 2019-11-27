@@ -9,8 +9,8 @@ export class SignUpService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  readUsers() {
-    return this.firestore.collection('users').snapshotChanges();
+  readUsers(loginAs: string) {
+    return this.firestore.collection(loginAs).snapshotChanges();
   }
 
   addUsers(data: any) {
@@ -24,6 +24,16 @@ export class SignUpService {
   registerUser(val: any) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(val.email, val.password)
+        .then(
+          ress => resolve(ress),
+          err => reject(err)
+        );
+    });
+  }
+
+  loginUser(val: any) {
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(val.email, val.password)
         .then(
           ress => resolve(ress),
           err => reject(err)
