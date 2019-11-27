@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      username: new FormControl(null, {
+      email: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(1)]
       }),
@@ -33,8 +33,8 @@ export class LoginPage implements OnInit {
       })
     });
 
-    this.form.controls.username.valueChanges.subscribe(() => {
-      if (!this.form.controls.username.valid) {
+    this.form.controls.email.valueChanges.subscribe(() => {
+      if (!this.form.controls.email.valid) {
         this.validationUname = true;
       } else {
         this.validationUname = false;
@@ -61,29 +61,22 @@ export class LoginPage implements OnInit {
   onLogin(){
     if (this.validationUname !== true && this.validationPassword !== true && this.validationLoginAs !== true) {
       // tslint:disable-next-line: max-line-length
-      if (this.form.value.username !== null && this.form.value.password !== null && this.form.value.loginAs !== null) {
+      if (this.form.value.email !== null && this.form.value.password !== null && this.form.value.loginAs !== null) {
         // console.log(this.form.value.loginAs);
-        this.signUpSrvc.readUsers().subscribe(data => {
+        // console.log('here');
+        
 
-        this.users = data.map(e => {
-          return {
-            name : e.payload.doc.data()['name']
-          };
-        });
-        // console.log(this.users[0].name);
-
-        });
-
-        if(this.form.value.username === 'this.users[0].name') {
-          this.navCtrl.navigateForward(['/home-pendaftar']);
-        } else {
-          this.navCtrl.navigateForward(['/home-pendaftar']);
-        }
+        // if(this.form.value.email === 'this.users[0].name') {
+        //   this.navCtrl.navigateForward(['/home-pendaftar']);
+        // } else {
+        //   this.navCtrl.navigateForward(['/home-pendaftar']);
+        // }
+        this.loginUser();
       } else {
-        if(this.form.value.username == null) {
+        if(this.form.value.email == null) {
           this.validationUname = true;
         }
-        if (this.form.value.username == null) {
+        if (this.form.value.email == null) {
           this.validationPassword = true;
         }
         if (this.form.value.loginAs == null) {
@@ -96,6 +89,41 @@ export class LoginPage implements OnInit {
   }
   onRegister(){
     this.navCtrl.navigateBack('/sign-up');
+  }
+
+  loginUser(){
+    this.signUpSrvc.loginUser(this.form.value)
+    .then(res => {
+        this.signUpSrvc.readUsers(this.form.value.loginAs).subscribe(data => {
+
+        this.users = data.map(e => {
+          return {
+            uid : e.payload.doc.data()['userID']
+          };
+        });
+
+        for(var i=0; i<this.users.length; i++){
+          console.log(res.user.uid);
+          console.log(this.users[i].uid);
+          if(res.user.uid === this.users[i].uid){
+            if(this.form.value.loginAs === 'users'){
+              this.navCtrl.navigateForward('/home-pendaftar');
+            }
+            else {
+              this.navCtrl.navigateForward('/home-penyedia');
+            }
+            break;
+          }
+        }
+
+
+
+        // console.log(this.users.length);
+
+        });
+      // 
+    }, err => {
+    })
   }
 
   async presentAlert() {

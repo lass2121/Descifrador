@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Request Kegiatan</ion-title>
+    <ion-buttons>
+      <ion-back-button defaultHref="/home-pendaftar"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Activity Name</ion-label>
+        <ion-input type="text"  formControlName="nama"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Activity Goal</ion-label>
+        <ion-input type="text" formControlName="tujuan"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Total Participant</ion-label>
+        <ion-input type="number" formControlName="jumlah"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Activity Date</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" min="2019" max="2999" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Activity Start Time</ion-label>
+        <ion-datetime displayFormat="HH:mm" formControlName="start_time"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Activity End Time</ion-label>
+        <ion-datetime displayFormat="HH:mm" formControlName="end_time"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Activity Description</ion-label>
+        <ion-textarea rows="10" cols="20" formControlName="desc"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="onSubmit()" type="button" expand="block">Submit</ion-button>
+    <ion-button (click)="onCancel()" type="button" expand="block" fill="outline">Cancel</ion-button>
+  </form>
+</ion-content>

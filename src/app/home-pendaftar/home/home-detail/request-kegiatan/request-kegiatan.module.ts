@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RequestPage } from './request.page';
+import { RequestKegiatanPage } from './request-kegiatan.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: RequestPage
+    component: RequestKegiatanPage
   }
 ];
 
@@ -19,8 +19,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RequestPage]
+  declarations: [RequestKegiatanPage]
 })
-export class RequestPageModule {}
+export class RequestKegiatanPageModule {}

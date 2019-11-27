@@ -13,12 +13,4 @@ export class HomeDetailPage implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    this.navCtrl.navigateBack('/home-pendaftar/home');
-  }
-
-  onCancel(){
-    this.navCtrl.navigateBack('/home-pendaftar/home');
-  }
-
 }
