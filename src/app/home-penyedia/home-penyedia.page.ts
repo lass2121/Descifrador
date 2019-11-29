@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { HomePenyediaService } from './home-penyedia.service';
 
 @Component({
   selector: 'app-home-penyedia',
@@ -8,13 +9,15 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./home-penyedia.page.scss'],
 })
 export class HomePenyediaPage implements OnInit {
-
+  
   constructor(
-    private navCtrl: NavController
+    private navCtrl: NavController, 
+    private homepenyediaSvc : HomePenyediaService
   ) { }
 
   ngOnInit() {
-  }
+   
+}
 
   goBack(){
     this.navCtrl.navigateBack('/login');
