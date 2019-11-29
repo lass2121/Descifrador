@@ -8,6 +8,12 @@ import { BehaviorSubject } from 'rxjs';
 export class HomePendaftarService {
   request = new BehaviorSubject<Request[]>([]);
 
+  name: string;
+  email: string;
+  occupation: string;
+  age: number;
+  telp: number;
+
   constructor(private firestore: AngularFirestore) { }
 
   addRequest(data: any) {

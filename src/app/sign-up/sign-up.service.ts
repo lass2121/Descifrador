@@ -13,12 +13,12 @@ export class SignUpService {
     return this.firestore.collection(loginAs).snapshotChanges();
   }
 
-  addUsers(data: any) {
-    return this.firestore.collection('users').add(data);
+  addUsers(data: any, uid :string) {
+    return this.firestore.doc('users/' + uid).set(data);
   }
 
-  addPenyedia(data: any) {
-    return this.firestore.collection('penyedia').add(data);
+  addPenyedia(data: any, uid :string) {
+    return this.firestore.doc('penyedia/' + uid).set(data);
   }
 
   registerUser(val: any) {
