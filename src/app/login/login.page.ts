@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   flag = false;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private signUpSrvc: SignUpService, private loadingCtrl: LoadingController) { }
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private signUpSrvc: SignUpService, private loadingCtrl: LoadingController,private loginSvc: LoginService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -98,9 +99,10 @@ export class LoginPage implements OnInit {
         });
 
         for (var  i = 0; i < this.users.length; i++) {
-          console.log(res.user.uid);
-          console.log(this.users[i].uid);
+          // console.log(res.user.uid);
+          // console.log(this.users[i].uid);
           if(res.user.uid === this.users[i].uid) {
+            this.loginSvc.addUid(res.user.uid);   
             if(this.form.value.loginAs === 'users'){
               this.dismiss();
               this.flag = true;
@@ -113,6 +115,7 @@ export class LoginPage implements OnInit {
             break;
           }
         }
+        console.log(this.flag);
         if(!this.flag) {
           this.dismiss();
           this.presentAlertError();
