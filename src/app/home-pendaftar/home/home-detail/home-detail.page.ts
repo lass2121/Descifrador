@@ -23,6 +23,7 @@ export class HomeDetailPage implements OnInit {
           this.schoolId = paramMap.get('schoolId');
       }
     );
+    
   }
 
 }
