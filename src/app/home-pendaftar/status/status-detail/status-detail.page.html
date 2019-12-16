@@ -12,29 +12,43 @@
   <ion-card>
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Nama Kegiatan</ion-label>
-        <ion-input type="text" readonly value="Main bola"></ion-input>
+        <ion-label color="primary" position="stacked">Activity Name</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.nama}}</ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
-        <ion-input type="text"  readonly value="battle royal main bola bersama semua murid"></ion-input>
+        <ion-label color="primary" position="stacked">Activity Goal</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.tujuan}}</ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Jumlah Peserta</ion-label>
-        <ion-input type="number" readonly value="10000"></ion-input>
+        <ion-label color="primary" position="stacked">Total Participant</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.jumlah}}</ion-input>
       </ion-item>
-  
+      <ion-item>
+        <ion-label color="primary" position="stacked">Activity Date</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.date}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Activity Start Time</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.start_time}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Activity End Time</ion-label>
+        <ion-input type="text" readonly>{{(request | async)?.end_time}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Activity Description</ion-label>
+        <ion-textarea rows="10" cols="20" readonly>{{(request | async)?.desc}}</ion-textarea>
+      </ion-item>
     </ion-list>
   </ion-card>
-
   <ion-card>
     <ion-item lines="none">
-        <ion-label>Status : Approved</ion-label>
+        <ion-label>Status : {{(request | async)?.status}}</ion-label>
     </ion-item>
       
     <ion-item>
-      <ion-label position="stacked">Feedback</ion-label>
-      <ion-textarea readonly value="feedback here"></ion-textarea>
+      <ion-label  position="stacked">Feedback</ion-label>
+      <ion-textarea readonly>{{(request | async)?.feedback}}</ion-textarea>
     </ion-item>
   </ion-card>
   

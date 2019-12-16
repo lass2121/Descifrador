@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -10,9 +13,12 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   public listSekolah;
+  selectedImage: string;
+
   constructor(private router: Router, private navCtrl: NavController, private pendaftarSvc: HomePendaftarService) { }
 
   ngOnInit() {
+    defineCustomElements(window);
     this.listSekolah = this.pendaftarSvc.readAllSekolah().valueChanges();
   }
 

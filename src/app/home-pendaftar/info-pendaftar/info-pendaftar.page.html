@@ -9,8 +9,13 @@
 
 <ion-content>    
   <ion-avatar class="avatar">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/A6M3_Zero_N712Z_1.jpg/300px-A6M3_Zero_N712Z_1.jpg">
-  </ion-avatar>
+      <img *ngIf="profileImg" [src]="profileImg" (click)= "file.click()">
+      <img *ngIf="!profileImg" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" (click)= "file.click()">
+  </ion-avatar>  
+  <div style="display: none;">
+    <input #file type='file' (change)="onFileChosen($event)" />
+  </div>
+
   <div class="nama">
     <p>{{(user | async)?.name}}</p>
   </div>
