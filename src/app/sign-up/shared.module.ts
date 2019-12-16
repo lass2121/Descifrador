@@ -13,7 +13,7 @@ import { IonicModule } from '@ionic/angular';
         CommonModule,
         IonicModule,
         // AgmCoreModule.forRoot({
-        //     apiKey: 'AIzaSyBjXaEBb57wWm4NE4cS0dtWykR9G-SgqRE',
+        //     apiKey: '',
         // }),
     ],
     exports: [LocationPickerComponent, MapModalComponent],
