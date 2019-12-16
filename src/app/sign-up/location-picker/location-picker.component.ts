@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MapModalComponent } from '../map-modal/map-modal.component';
 
-// import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PlaceService } from '../place.service';
-// import { HttpClient } from 'selenium-webdriver/http';
-
 
 @Component({
   selector: 'app-location-picker',
