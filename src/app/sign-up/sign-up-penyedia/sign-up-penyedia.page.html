@@ -53,11 +53,11 @@
               <ion-col size-xs="11">
                 <ion-item>
                   <ion-label position="floating">Address</ion-label>
-                  <ion-input type="text" formControlName="address" ></ion-input>
+                  <ion-input type="text" formControlName="address" value="{{ address }}"></ion-input>
                 </ion-item>
               </ion-col>  
               <ion-col size-xs="1" style="margin: 10% 0 0 0">
-                <ion-icon style="font-size: 20pt;" name="navigate"></ion-icon>
+                <app-location-picker></app-location-picker>
               </ion-col>
             </ion-row>
             <ion-item lines="none" *ngIf="validationAddress">

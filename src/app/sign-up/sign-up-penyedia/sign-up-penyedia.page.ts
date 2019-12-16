@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SignUpService } from '../sign-up.service';
+import { PlaceService } from '../place.service';
+import { Capacitor, Plugins } from '@capacitor/core';
 
 @Component({
   selector: 'app-sign-up-penyedia',
@@ -20,11 +22,20 @@ export class SignUpPenyediaPage implements OnInit {
   validationJenjang = false;
   validationAddress = false;
 
-  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService) { }
+  address = '';
+
+  constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService, private placeSvc: PlaceService) { }
 
   ngOnInit() {
+    console.log(this.getLocation());
+    this.placeSvc.getAddress().subscribe(
+      currAddresss => {
+        this.address = currAddresss;
+      }
+    );
+
     this.form = new FormGroup({
-     
+
       password: new FormControl(null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.minLength(8)]
@@ -177,5 +188,14 @@ export class SignUpPenyediaPage implements OnInit {
 
     await alert.present();
   }
+
+  async getLocation() {
+    if (!Capacitor.isPluginAvailable('Geolocation')) {
+    // this.presentAlert();
+    return null;
+    }
+    const coordinates = await Plugins.Geolocation.getCurrentPosition();
+    return coordinates.coords;
+    }
 
 }
