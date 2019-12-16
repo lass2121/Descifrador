@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HomePendaftarService } from './../home-pendaftar.service';
 import { LoginService } from './../../login/login.service';
 import { Component, OnInit } from '@angular/core';
-import { Plugins, CameraResultType, CameraSource } from '@capasitor/core';
+// import { Plugins, CameraResultType, CameraSource } from '@capasitor/core';
 
 @Component({
   selector: 'app-info-pendaftar',
@@ -26,8 +26,8 @@ export class InfoPendaftarPage implements OnInit {
   async takepicture() {
 
   
-    const image = await Plugins.Camera.getPhoto({
-      quality: 90
-    });
+    // const image = await Plugins.Camera.getPhoto({
+    //   quality: 90
+    // });
   }
 }

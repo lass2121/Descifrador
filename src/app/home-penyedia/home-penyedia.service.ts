@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Sekolah } from './sekolah.model';
 
 
 
@@ -34,6 +35,11 @@ export class HomePenyediaService {
     }
   });;
     
+  }
+
+  getInfoPenyedia(UseriD: string): AngularFirestoreDocument<Sekolah>{
+    console.log(UseriD);
+    return this.firestore.collection('penyedia').doc(UseriD);
   }
 
 }

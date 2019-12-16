@@ -7,6 +7,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>    
+  <ion-avatar class="avatar">
+      <img src="https://selerasa.com/wp-content/uploads/2015/12/images_daging_ayam-goreng.jpg">
+  </ion-avatar>
+  <div class="nama">
+    <p>{{(penyedia | async)?.schoolName}}</p>
+  </div>
 
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Email</ion-label>
+        <p>{{(penyedia | async)?.email}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Educational Stage</ion-label>
+        <p>{{(penyedia | async)?.educationalStage}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Address</ion-label>
+        <p>{{(penyedia | async)?.address}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">No. Telephone</ion-label>
+        <p>{{(penyedia | async)?.phoneNumber}}</p>
+      </ion-item>
+      
+    </ion-list>
+  </ion-card>
 </ion-content>
