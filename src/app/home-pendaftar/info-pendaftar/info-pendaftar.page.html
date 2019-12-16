@@ -22,13 +22,18 @@
         <p>{{(user | async)?.email}}</p>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" position="stacked">Occupation</ion-label>
-        <p>{{(user | async)?.occupation}}</p>
-      </ion-item>
-      <ion-item>
         <ion-label color="primary" position="stacked">Age</ion-label>
         <p>{{(user | async)?.age}}</p>
       </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Gender</ion-label>
+        <p>{{(user | async)?.gender}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Occupation</ion-label>
+        <p>{{(user | async)?.occupation}}</p>
+      </ion-item>
+      
       <ion-item>
         <ion-label color="primary" position="stacked">No. Telephone</ion-label>
         <p>{{(user | async)?.phoneNumber}}</p>
