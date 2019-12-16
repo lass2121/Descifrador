@@ -1,3 +1,6 @@
+import { User } from './../user.model';
+import { Observable } from 'rxjs';
+import { HomePendaftarService } from './../home-pendaftar.service';
 import { LoginService } from './../../login/login.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,14 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-pendaftar.page.scss'],
 })
 export class InfoPendaftarPage implements OnInit {
+  public user : Observable<User>;
 
-  constructor(private loginSvc: LoginService) { }
+  constructor(private loginSvc: LoginService, private pendaftarSvc: HomePendaftarService) { }
 
   ngOnInit() {
-    console.log(this.loginSvc.getUid());
-
-
+    let uid = this.loginSvc.getUid();
+    this.user = this.pendaftarSvc.readInfoPendaftar(uid).valueChanges();
+    console.log(this.user);
+    // console.log(this.pendaftarSvc.readInfoPendaftar(uid).valueChanges());
+    
   }
+
+  
 
   
 

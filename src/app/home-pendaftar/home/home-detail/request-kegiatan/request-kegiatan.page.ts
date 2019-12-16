@@ -2,6 +2,8 @@ import { HomePendaftarService } from './../../../home-pendaftar.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-request-kegiatan',
@@ -10,9 +12,31 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RequestKegiatanPage implements OnInit {
   form: FormGroup;
-  constructor(private navCtrl: NavController, private homePendaftarSvc: HomePendaftarService) { }
+  schoolId:string;
 
+  validationNama = false;
+  validationTujuan = false;
+  validationJumlah = false;
+  validationDate = false;
+  validationStartTime = false;
+  validationEndTime = false;
+  validationDesc = false;
+
+  constructor(
+    private navCtrl: NavController, 
+    private activatedRoute: ActivatedRoute, 
+    private homePendaftarSvc: HomePendaftarService,
+    private loginSvc: LoginService,
+    ) { }
+  
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(
+      paramMap => {
+        if(!paramMap.has('schoolId')){return;}
+          this.schoolId = paramMap.get('schoolId')
+      }
+    );
+
     this.form = new FormGroup({
       nama: new FormControl(null, {
         updateOn: 'change',
@@ -45,9 +69,67 @@ export class RequestKegiatanPage implements OnInit {
       
     });
 
+    this.form.controls.nama.valueChanges.subscribe(() => {
+      if (!this.form.controls.nama.valid) {
+        this.validationNama = true;
+      } else {
+        this.validationNama = false;
+      }
+    });
+
+    this.form.controls.tujuan.valueChanges.subscribe(() => {
+      if (!this.form.controls.tujuan.valid) {
+        this.validationTujuan = true;
+      } else {
+        this.validationTujuan = false;
+      }
+    });
+
+    this.form.controls.jumlah.valueChanges.subscribe(() => {
+      if (!this.form.controls.jumlah.valid) {
+        this.validationJumlah = true;
+      } else {
+        this.validationJumlah = false;
+      }
+    });
+
+    this.form.controls.date.valueChanges.subscribe(() => {
+      if (!this.form.controls.date.valid) {
+        this.validationDate = true;
+      } else {
+        this.validationDate = false;
+      }
+    });
+
+    this.form.controls.start_time.valueChanges.subscribe(() => {
+      if (!this.form.controls.start_time.valid) {
+        this.validationStartTime = true;
+      } else {
+        this.validationStartTime = false;
+      }
+    });
+
+    this.form.controls.end_time.valueChanges.subscribe(() => {
+      if (!this.form.controls.end_time.valid) {
+        this.validationEndTime = true;
+      } else {
+        this.validationEndTime = false;
+      }
+    });
+
+    this.form.controls.desc.valueChanges.subscribe(() => {
+      if (!this.form.controls.desc.valid) {
+        this.validationDesc = true;
+      } else {
+        this.validationDesc = false;
+      }
+    });
+
   }
 
   onSubmit(){
+
+
     console.log(this.form.value);
     let start_time =  this.form.value.start_time;
     start_time = start_time.substring(11,16);
@@ -55,6 +137,8 @@ export class RequestKegiatanPage implements OnInit {
     end_time = end_time.substring(11,16);
     let date = this.form.value.date
     date = date.substring(0,10);
+
+
 
     const data = {};
     data['nama'] = this.form.value.nama;
@@ -65,7 +149,9 @@ export class RequestKegiatanPage implements OnInit {
     data['start_time'] = start_time;
     data['end_time'] = end_time;
     data['status'] = 'Waiting Approval';
-
+    data['schoolID'] = this.schoolId;
+    data['requesterID'] = this.loginSvc.getUid();
+    data['feedback'] = '';
 
     this.homePendaftarSvc.addRequest(data);
 

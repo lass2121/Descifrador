@@ -1,5 +1,7 @@
+import { Sekolah } from './../home-penyedia/sekolah.model';
+import { User } from './user.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,12 +9,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HomePendaftarService {
   request = new BehaviorSubject<Request[]>([]);
-
-  name: string;
-  email: string;
-  occupation: string;
-  age: number;
-  telp: number;
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -22,6 +18,20 @@ export class HomePendaftarService {
 
   readRequest() {
     
+  }
+
+  readInfoPendaftar(UseriD: string): AngularFirestoreDocument<User>{
+    console.log(UseriD);
+    return this.firestore.collection('users').doc(UseriD);
+  }
+
+  readAllSekolah(){
+    return this.firestore.collection('penyedia');
+  }
+
+  readSekolah(UseriD: string): AngularFirestoreDocument<Sekolah>{
+    console.log(UseriD);
+    return this.firestore.collection('penyedia').doc(UseriD);
   }
 
 

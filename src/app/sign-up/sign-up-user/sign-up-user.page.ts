@@ -196,6 +196,7 @@ export class SignUpUserPage implements OnInit {
       data['occupation'] = this.formTwo.value.occupation;
       data['phoneNumber'] = this.formTwo.value.notelephone;
       data['userID'] = res.user.uid;
+      data['email'] = this.formOne.value.email;
       this.signUpSrvc.addUsers(data,res.user.uid);
     }, err => {
       console.log(err);

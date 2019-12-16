@@ -12,26 +12,26 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/A6M3_Zero_N712Z_1.jpg/300px-A6M3_Zero_N712Z_1.jpg">
   </ion-avatar>
   <div class="nama">
-      <p>Ignatius Yudhistira Indrawan</p>
+    <p>{{(user | async)?.name}}</p>
   </div>
 
   <ion-card>
     <ion-list>
       <ion-item>
         <ion-label color="primary" position="stacked">Email</ion-label>
-        <p>email.email@email.com</p>
+        <p>{{(user | async)?.email}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Occupation</ion-label>
-        <p>Kamikaze Plane</p>
+        <p>{{(user | async)?.occupation}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Age</ion-label>
-        <p>11</p>
+        <p>{{(user | async)?.age}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">No. Telephone</ion-label>
-        <p>08122213244231</p>
+        <p>{{(user | async)?.phoneNumber}}</p>
       </ion-item>
       
     </ion-list>

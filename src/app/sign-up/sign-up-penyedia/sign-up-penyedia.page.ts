@@ -161,6 +161,7 @@ export class SignUpPenyediaPage implements OnInit {
       data['educationalStage'] = this.form.value.jenjang;
       data['phoneNumber'] = this.form.value.notelepon;
       data['userID'] = res.user.uid;
+      data['email'] = this.form.value.email;
       this.signUpSrvc.addPenyedia(data,res.user.uid);
     }, err => {
       console.log(err);

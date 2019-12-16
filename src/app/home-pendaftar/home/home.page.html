@@ -35,13 +35,13 @@
     </ion-item>
     
     <ion-list>
-      <ion-item [routerLink]="['./','a1']">
-        <ion-label>Sekolah 1</ion-label>
+      <ion-item
+      *ngFor="let sekolah of listSekolah | async"   
+      [routerLink]="['./',sekolah.userID]">
+        <ion-label>{{sekolah.schoolName}}</ion-label>
       </ion-item>
-      <ion-item [routerLink]="['./','a1']">
-        <ion-label>Sekolah 2</ion-label>
-      </ion-item>
-    </ion-list>
+    </ion-list
+    >
   </ion-card>
   
 </ion-content>

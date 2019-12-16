@@ -1,4 +1,3 @@
-import { Login } from './login.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -20,7 +19,6 @@ export class LoginService {
 
   getUid(){
     // return this.login.uid;
-
     return this.uid;
   }
 

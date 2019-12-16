@@ -10,32 +10,32 @@
 <ion-content>
   <ion-img src="https://cdns.klimg.com/merdeka.com/i/w/news/2019/09/19/1110741/670x335/umn-tawarkan-beasiswa-sejumlah-program-studi-khusus-minat.jpg" ></ion-img>
   <div class="nama">
-      <p>Universitas Multimedia Nusantara</p>
+      <p>{{(sekolah | async)?.schoolName}}</p>
   </div>
   <ion-card>
     <ion-list>
       <ion-item>
         <ion-label color="primary" position="stacked">Email</ion-label>
-        <p>email.email@email.com</p>
+        <p>{{(sekolah | async)?.email}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Address</ion-label>
-        <p>Jalan depan rumah</p>
+        <p>{{(sekolah | async)?.address}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Educational Stage</ion-label>
-        <p>SD</p>
+        <p>{{(sekolah | async)?.educationalStage}}</p>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Phone Number</ion-label>
-        <p>08122213244231</p>
+        <p>{{(sekolah | async)?.phoneNumber}}</p>
       </ion-item>
     </ion-list>
   </ion-card> 
 
   <ion-button
     expand="block"
-    [routerLink]="['/', 'home-pendaftar', 'tabs', 'home', 'request-kegiatan', 'a']"
+    [routerLink]="['/', 'home-pendaftar', 'tabs', 'home', 'request-kegiatan', schoolId ]"
     routerLinkActive="router-link-active"
     >Request Kegiatan</ion-button
   >
