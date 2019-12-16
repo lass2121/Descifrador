@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
-<<<<<<< HEAD
 import { Request } from 'src/app/home-pendaftar/request.model';
 
-=======
 import { Sekolah } from './sekolah.model';
->>>>>>> 9f5dd2076a78562d6dffe3a691eefade71421128
 
 
 
