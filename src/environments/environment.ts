@@ -8,7 +8,8 @@ export const environment = {
     apiKey: 'AIzaSyDlqJ1UqZn5GJzY5SZa9gIck7Rg167fDkk',
     authDomain: 'descifrador-1db9a.firebaseapp.com',
     databaseURL: '/users/ZLrmgPmTK5sXp8WyEOPp',
-    projectId: 'descifrador-1db9a'
+    projectId: 'descifrador-1db9a',
+    storageBucket: 'gs://descifrador-1db9a.appspot.com/'
   }
 };
 
