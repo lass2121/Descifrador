@@ -30,7 +30,7 @@ export class InfoPendaftarPage implements OnInit {
     this.uid = this.loginSvc.getUid();
     this.user = this.pendaftarSvc.readInfoPendaftar(this.uid).valueChanges();
     console.log(this.user);
-    const starsRef = firebase.storage().ref().child(this.uid);
+    const starsRef = firebase.storage().ref().child(this.uid + '/Profile.jpg');
     starsRef.getDownloadURL().then((downloadURL) => {
       console.log('File available at', downloadURL);
       this.profileImg = downloadURL;
@@ -38,23 +38,23 @@ export class InfoPendaftarPage implements OnInit {
     // console.log(this.pendaftarSvc.readInfoPendaftar(uid).valueChanges());
   }
 
-  async takePicture() {
-    const image = await Plugins.Camera.getPhoto({
-      quality: 90,
-      source: CameraSource.Prompt,
-      resultType: CameraResultType.Uri,
-      correctOrientation: true
-    });
-    this.selectedImage = image.webPath;
-    }
+  // async takePicture() {
+  //   const image = await Plugins.Camera.getPhoto({
+  //     quality: 90,
+  //     source: CameraSource.Prompt,
+  //     resultType: CameraResultType.Uri,
+  //     correctOrientation: true
+  //   });
+  //   this.selectedImage = image.webPath;
+  //   }
 
-  onPickImage() {
-      if (!Capacitor.isPluginAvailable('Camera')) {
-        return;
-      } else {
-        this.takePicture();
-      }
-    }
+  // onPickImage() {
+  //     if (!Capacitor.isPluginAvailable('Camera')) {
+  //       return;
+  //     } else {
+  //       this.takePicture();
+  //     }
+  //   }
 
     onFileChosen(evt: Event) {
       const pickedFile = (evt.target as HTMLInputElement).files[0];
