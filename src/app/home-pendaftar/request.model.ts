@@ -1,11 +1,11 @@
-export class Request {
-    constructor(
-        public nama: string,
-        public tujuan: string,
-        public desc: string,
-        public date: string,
-        public start_time: string,
-        public end_time: string,
-        public jumlah: number,
-    ){}
+export interface Request {
+    nama: string;
+    tujuan: string;
+    desc: string;
+    date: string;
+    start_time: string;
+    end_time: string;
+    jumlah: number;
+    status: string;
+    feedback:string;
 }

@@ -18,49 +18,49 @@
   <form [formGroup]="form">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Activity Name</ion-label>
+        <ion-label color="primary" position="stacked">Activity Name</ion-label>
         <ion-input type="text"  formControlName="nama"></ion-input>
       </ion-item>
       <ion-item lines="none" *ngIf="validationNama">
         <ion-text color="danger">Please enter Activity Name</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Activity Goal</ion-label>
+        <ion-label color="primary" position="stacked">Activity Goal</ion-label>
         <ion-input type="text" formControlName="tujuan"></ion-input>
       </ion-item>
       <ion-item lines="none" *ngIf="validationTujuan">
         <ion-text color="danger">Please enter Activity Goal</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Total Participant</ion-label>
+        <ion-label color="primary" position="stacked">Total Participant</ion-label>
         <ion-input type="number" formControlName="jumlah"></ion-input>
       </ion-item>
       <ion-item lines="none" *ngIf="validationJumlah">
         <ion-text color="danger">Please enter Total Participant</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Activity Date</ion-label>
+        <ion-label color="primary" position="stacked">Activity Date</ion-label>
         <ion-datetime displayFormat="DD-MM-YYYY" min="2019" max="2999" formControlName="date"></ion-datetime>
       </ion-item>
       <ion-item lines="none" *ngIf="validationDate">
         <ion-text color="danger">Please enter Activity Date</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Activity Start Time</ion-label>
+        <ion-label color="primary" position="stacked">Activity Start Time</ion-label>
         <ion-datetime displayFormat="HH:mm" formControlName="start_time"></ion-datetime>
       </ion-item>
       <ion-item lines="none" *ngIf="validationStartTime">
         <ion-text color="danger">Please enter Activity Start Time</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Activity End Time</ion-label>
+        <ion-label color="primary" position="stacked">Activity End Time</ion-label>
         <ion-datetime displayFormat="HH:mm" formControlName="end_time"></ion-datetime>
       </ion-item>
       <ion-item lines="none" *ngIf="validationEndTime">
         <ion-text color="danger">Please enter Activity End Time</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Activity Description</ion-label>
+        <ion-label color="primary" position="stacked">Activity Description</ion-label>
         <ion-textarea rows="10" cols="20" formControlName="desc"></ion-textarea>
       </ion-item>
       <ion-item lines="none" *ngIf="validationDesc">

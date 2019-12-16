@@ -6,11 +6,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item [routerLink]="['./','a1']">
-      <ion-label>Status Request 1</ion-label>
-    </ion-item>
-    <ion-item [routerLink]="['./','a1']">
-      <ion-label>Status Request 2</ion-label>
-    </ion-item>
+    <ion-item
+      *ngFor="let request of listRequest"   
+      [routerLink]="['./',request.$key]">
+        <ion-label>{{request.$value.nama}}</ion-label>
+      </ion-item>
   </ion-list>
 </ion-content>
