@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-img src="https://cdns.klimg.com/merdeka.com/i/w/news/2019/09/19/1110741/670x335/umn-tawarkan-beasiswa-sejumlah-program-studi-khusus-minat.jpg" ></ion-img>
+  <ion-img [src]="profileImg" style="height: 50%;" ></ion-img>
   <div class="nama">
       <p>{{(sekolah | async)?.schoolName}}</p>
   </div>
