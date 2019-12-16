@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HomePenyediaService } from '../home-penyedia.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Request } from 'src/app/home-pendaftar/request.model';
+import { LoginService } from 'src/app/login/login.service';
 
 
 @Component({
@@ -10,13 +12,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./request.page.scss'],
 })
 export class RequestPage implements OnInit {
-  data : any;
+  //public user : Observable<Request>;
+  data : Request[];
   constructor(
     private homePenyediaSvc : HomePenyediaService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private loginSvc: LoginService,
+    
   ) { }
 
   ngOnInit() {
+    let uid = this.loginSvc.getUid();
+    //this.data = this.homePenyediaSvc.readInfoPenyedia(uid).valueChanges();
     this.homePenyediaSvc.requestKegiatan().subscribe((data)=>{
       this.data = data;
       console.log(data);
