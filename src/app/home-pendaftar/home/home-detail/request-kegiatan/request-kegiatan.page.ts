@@ -1,6 +1,6 @@
 import { HomePendaftarService } from './../../../home-pendaftar.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/login/login.service';
@@ -27,6 +27,7 @@ export class RequestKegiatanPage implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private homePendaftarSvc: HomePendaftarService,
     private loginSvc: LoginService,
+    private alertCtrl: AlertController,
     ) { }
   
   ngOnInit() {
@@ -126,40 +127,90 @@ export class RequestKegiatanPage implements OnInit {
     });
 
   }
-
+  
   onSubmit(){
+  
+    if(!this.validationNama && !this.validationTujuan && !this.validationJumlah && !this.validationDate && !this.validationStartTime && !this.validationEndTime && !this.validationDesc){
+      if(this.form.value.nama !== null && this.form.value.tujuan !== null && this.form.value.jumlah !== null && this.form.value.date !== null && this.form.value.start_time !== null && this.form.value.end_time !== null && this.form.value.desc !== null){
+        console.log(this.form.value);
+        let start_time =  this.form.value.start_time;
+        start_time = start_time.substring(11,16);
+        let end_time =  this.form.value.end_time;
+        end_time = end_time.substring(11,16);
+        let date = this.form.value.date
+        date = date.substring(0,10);
 
 
-    console.log(this.form.value);
-    let start_time =  this.form.value.start_time;
-    start_time = start_time.substring(11,16);
-    let end_time =  this.form.value.end_time;
-    end_time = end_time.substring(11,16);
-    let date = this.form.value.date
-    date = date.substring(0,10);
 
+        const data = {};
+        data['nama'] = this.form.value.nama;
+        data['tujuan'] = this.form.value.tujuan;
+        data['jumlah'] = this.form.value.jumlah;
+        data['desc'] = this.form.value.desc;
+        data['date'] = date;
+        data['start_time'] = start_time;
+        data['end_time'] = end_time;
+        data['status'] = 'Waiting Approval';
+        data['schoolID'] = this.schoolId;
+        data['requesterID'] = this.loginSvc.getUid();
+        data['feedback'] = '';
 
-
-    const data = {};
-    data['nama'] = this.form.value.nama;
-    data['tujuan'] = this.form.value.tujuan;
-    data['jumlah'] = this.form.value.jumlah;
-    data['desc'] = this.form.value.desc;
-    data['date'] = date;
-    data['start_time'] = start_time;
-    data['end_time'] = end_time;
-    data['status'] = 'Waiting Approval';
-    data['schoolID'] = this.schoolId;
-    data['requesterID'] = this.loginSvc.getUid();
-    data['feedback'] = '';
-
-    this.homePendaftarSvc.addRequest(data);
-
-    // this.navCtrl.navigateBack('/home-pendaftar/home');
+        this.homePendaftarSvc.addRequest(data);
+        this.presentAlertSucccess();
+        this.navCtrl.navigateBack('/home-pendaftar/tabs/status');
+      }
+      else{
+        if(this.form.value.nama === null){
+          this.validationNama = true;
+        }
+        if(this.form.value.tujuan === null){
+          this.validationTujuan = true;
+        }
+        if(this.form.value.jumlah === null){
+          this.validationJumlah = true;
+        }
+        if(this.form.value.date === null){
+          this.validationDate = true;
+        }
+        if(this.form.value.start_time === null){
+          this.validationStartTime = true;
+        }
+        if(this.form.value.end_time === null){
+          this.validationEndTime = true;
+        }
+        if(this.form.value.desc === null){
+          this.validationDesc = true;
+        }
+      }
+    }
+    else{
+      console.log('false');
+      this.presentAlert();
+    }
+    
   }
 
   onCancel(){
     // this.navCtrl.navigateBack('/home-pendaftar/home');
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Invalid',
+      message: 'Please Complete The Form',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async presentAlertSucccess() {
+    const alert = await this.alertCtrl.create({
+      header: 'Success',
+      message: 'Request has been submitted!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 

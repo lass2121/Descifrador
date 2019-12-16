@@ -17,7 +17,7 @@ export class HomePendaftarService {
   }
 
   readRequest() {
-    
+    return this.firestore.collection('request-kegiatan');
   }
 
   readInfoPendaftar(UseriD: string): AngularFirestoreDocument<User>{
