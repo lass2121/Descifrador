@@ -45,4 +45,10 @@ export class HomePenyediaService {
     return this.firestore.collection('penyedia').doc(UseriD);
   }
 
+  getApprovedRequest() {
+    let uid = this.loginSvc.getUid();
+    return this.firestore.collection('request-kegiatan',ref => 
+    ref.where('schoolID','==',uid ).where('status','==','Approved') );
+  }
+
 }
