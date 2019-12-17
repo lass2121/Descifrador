@@ -22,6 +22,11 @@ const routes: Routes = [
                         path: 'request-kegiatan/:schoolId',
                         loadChildren: './home/home-detail/request-kegiatan/request-kegiatan.module#RequestKegiatanPageModule'
                     },
+                    {
+                        path: 'review-sekolah/:schoolId',
+                        loadChildren: './home/home-detail/review-sekolah/review-sekolah.module#ReviewSekolahPageModule'
+                    },
+
                 ]
             },
             {
@@ -34,7 +39,11 @@ const routes: Routes = [
                     {
                         path: ':requestId',
                         loadChildren: './status/status-detail/status-detail.module#StatusDetailPageModule',
-                    }
+                    },
+                    {
+                        path: 'review/:requestId',
+                        loadChildren: './status/status-detail/review/review.module#ReviewPageModule'
+                    },
                 ]
             },
             {
@@ -51,6 +60,10 @@ const routes: Routes = [
     },
   { path: 'info-pendaftar', loadChildren: './info-pendaftar/info-pendaftar.module#InfoPendaftarPageModule' },
   { path: 'request-kegiatan', loadChildren: './home/home-detail/request-kegiatan/request-kegiatan.module#RequestKegiatanPageModule' },
+  { path: 'review', loadChildren: './status/status-detail/review/review.module#ReviewPageModule' },
+  { path: 'review-sekolah', loadChildren: './home/home-detail/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' },
+
+
 
   
 

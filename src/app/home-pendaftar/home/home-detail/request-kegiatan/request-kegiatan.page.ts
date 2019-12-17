@@ -140,8 +140,6 @@ export class RequestKegiatanPage implements OnInit {
         let date = this.form.value.date
         date = date.substring(0,10);
 
-
-
         const data = {};
         data['nama'] = this.form.value.nama;
         data['tujuan'] = this.form.value.tujuan;
@@ -154,6 +152,7 @@ export class RequestKegiatanPage implements OnInit {
         data['schoolID'] = this.schoolId;
         data['requesterID'] = this.loginSvc.getUid();
         data['feedback'] = '';
+        data['review'] = '';
 
         this.homePendaftarSvc.addRequest(data);
         this.presentAlertSucccess();
@@ -191,7 +190,7 @@ export class RequestKegiatanPage implements OnInit {
   }
 
   onCancel(){
-    // this.navCtrl.navigateBack('/home-pendaftar/home');
+    this.navCtrl.navigateBack('/home-pendaftar/tabs/home/' + this.schoolId);
   }
 
   async presentAlert() {

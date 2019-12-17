@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>School Review</ion-title>
+    <ion-buttons>
+      <ion-back-button defaultHref="/home-pendaftar"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let review of Review">
+    <ion-item lines="none">
+      <ion-label color="primary" position="stacked">{{review.nama}}</ion-label>
+      <ion-textarea rows="10" cols="20" readonly>{{review.review}}</ion-textarea>
+    </ion-item>
+  </ion-card>
+</ion-content>

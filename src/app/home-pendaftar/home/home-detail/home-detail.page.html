@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Request Kegiatan</ion-title>
+    <ion-title>School Detail</ion-title>
     <ion-buttons>
       <ion-back-button defaultHref="/home-pendaftar"></ion-back-button>
     </ion-buttons>
@@ -35,10 +35,18 @@
   </ion-card> 
 
   <ion-button
+    color="success"
+    expand="block"
+    [routerLink]="['/', 'home-pendaftar', 'tabs', 'home', 'review-sekolah', schoolId ]"
+    routerLinkActive="router-link-active"
+    >School Review</ion-button
+  >
+
+  <ion-button
     expand="block"
     [routerLink]="['/', 'home-pendaftar', 'tabs', 'home', 'request-kegiatan', schoolId ]"
     routerLinkActive="router-link-active"
-    >Request Kegiatan</ion-button
+    >Activity Request</ion-button
   >
 
 
