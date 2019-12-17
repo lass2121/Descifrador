@@ -60,6 +60,7 @@ export class InfoPendaftarPage implements OnInit {
       const pickedFile = (evt.target as HTMLInputElement).files[0];
       const fr = new FileReader();
       fr.onload = () => {
+        this.presentLoading();
         const dataUrl = fr.result.toString();
         this.selectedImage = dataUrl;
 
@@ -69,7 +70,6 @@ export class InfoPendaftarPage implements OnInit {
 
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
           (snapshot) => {
-            this.presentLoading();
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log('Upload is ' + progress + '% done');
@@ -89,8 +89,8 @@ export class InfoPendaftarPage implements OnInit {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             console.log('File available at', downloadURL);
             this.profileImg = downloadURL;
+            this.dismiss();
           });
-          this.dismiss();
         });
       };
       fr.readAsDataURL(pickedFile);
