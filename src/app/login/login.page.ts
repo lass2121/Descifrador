@@ -1,8 +1,9 @@
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController, Platform } from '@ionic/angular';
 import { SignUpService } from '../sign-up/sign-up.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,47 @@ export class LoginPage implements OnInit {
   flag = false;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private signUpSrvc: SignUpService, private loadingCtrl: LoadingController,private loginSvc: LoginService) { }
+  constructor(private platform: Platform, private navCtrl: NavController, private alertCtrl: AlertController, private signUpSrvc: SignUpService, private loadingCtrl: LoadingController,private loginSvc: LoginService) { }
+  backButtonSubscription: any;
+
+  // ionViewWDidEnter() {
+  //   this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+  //     this.presentAlertConfirm();
+  //   });
+  //  }
+
+  //  async presentAlertConfirm() {
+  //   const alert = await this.alertCtrl.create({
+  //     header: 'Confirm!',
+  //     message: 'Do you want to exit the app?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         handler: () => {
+  //           console.log('Confirm Cancel');
+  //         }
+  //       }, {
+  //         text: 'Okay',
+  //         handler: () => {
+  //           console.log('Confirm Okay');
+  //           navigator['app'].exitApp();
+  //         }
+  //       }
+  //     ]
+  //   });
+
+  //   await alert.present();
+  // }
+
+  // ionViewWillEnter() {
+  //   this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+  //     this.presentAlertConfirm();
+  //   });
+  // }
+
+  //  ionViewWillLeave() {
+  //   this.backButtonSubscription.unsubscribe();
+  //  }
 
   ngOnInit() {
     this.form = new FormGroup({

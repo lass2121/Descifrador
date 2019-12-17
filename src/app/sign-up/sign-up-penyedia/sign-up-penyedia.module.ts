@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../shared.module';
 
 import { SignUpPenyediaPage } from './sign-up-penyedia.page';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     IonicModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)

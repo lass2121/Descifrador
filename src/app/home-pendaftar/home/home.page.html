@@ -15,15 +15,21 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-searchbar></ion-searchbar>
+          <ion-searchbar
+            (ionInput)="filterSekolah($event)"
+            (ionCancel)="clearFilter()"
+          ></ion-searchbar>
         </ion-col>
       </ion-row>
   
       <ion-row>
         <ion-col>
-          <ion-select placeholder="Kategori">
-            <ion-select-option value="f">Kategori 1</ion-select-option>
-            <ion-select-option value="m">Kategori 2</ion-select-option>
+          <ion-select (ionChange)="filterSekolahKategori($event)" placeholder="Educational Stage">
+            <ion-select-option value="tk">TK</ion-select-option>
+            <ion-select-option value="sd">SD</ion-select-option>
+            <ion-select-option value="smp">SMP</ion-select-option>
+            <ion-select-option value="sma">SMA</ion-select-option>
+            <ion-select-option value="all">All</ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>
@@ -46,7 +52,7 @@
     
     <ion-list>
       <ion-item
-      *ngFor="let sekolah of listSekolah | async"   
+      *ngFor="let sekolah of listSekolah "   
       [routerLink]="['./',sekolah.userID]">
         <ion-label>{{sekolah.schoolName}}</ion-label>
       </ion-item>

@@ -10,7 +10,8 @@ export const environment = {
     databaseURL: '/users/ZLrmgPmTK5sXp8WyEOPp',
     projectId: 'descifrador-1db9a',
     storageBucket: 'gs://descifrador-1db9a.appspot.com/'
-  }
+  },
+  mapsKey: 'AIzaSyBjXaEBb57wWm4NE4cS0dtWykR9G-SgqRE'
 };
 
 /*

@@ -41,5 +41,4 @@ export class HomePendaftarService {
     return this.firestore.collection('penyedia').doc(UseriD);
   }
 
-
 }
