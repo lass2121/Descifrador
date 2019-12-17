@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpPage implements OnInit {
 
-  constructor() { }
+  constructor(private platform: Platform, private navCtrl: NavController) { }
+
+  backButtonSubscription: any;
 
   ngOnInit() {
   }
 
+  // ionViewWillEnter() {
+  //   this.backButtonSubscription = this.platform.backButton.subscribe( () => {
+  //     this.navCtrl.back();
+  //   });
+  //  }
+
+  //  ionViewDidLeave() {
+  //   this.backButtonSubscription.unsubscribe();
+  //  }
 }
