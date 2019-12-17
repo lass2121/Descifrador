@@ -5,6 +5,7 @@ import { MapModalComponent } from '../map-modal/map-modal.component';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PlaceService } from '../place.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-location-picker',
@@ -33,7 +34,7 @@ export class LocationPickerComponent implements OnInit {
   }
 
   private getAddress(lat: number, lng: number) {
-    return this.http.get<any>(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=`)
+    return this.http.get<any>(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${environment.mapsKey}`)
       .pipe(
         map(geoData => {
           if (!geoData || !geoData.results || !geoData.results.length) {

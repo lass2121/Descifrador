@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Capacitor, Plugins } from '@capacitor/core';
+import { environment } from 'src/environments/environment';
 // import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,6 +21,10 @@ export class MapModalComponent implements OnInit, AfterViewInit {
   //   this.lat = event.coords.lat;
   //   this.lng = event.coords.lng;
   // }
+
+  ionViewDidEnter() {
+    this.ngAfterViewInit();
+  }
 
   ngAfterViewInit() {
     this.getGoogleMaps().then((googleMaps) => {
@@ -46,7 +51,7 @@ export class MapModalComponent implements OnInit, AfterViewInit {
           });
           map.panTo( new googleMaps.LatLng( loc.latitude, loc.longitude ) );
         }
-        });
+      });
 
       // const marker = new googleMaps.Marker({ position: { lat: this.lat, lng: this.lng }, map });
       // console.log(marker);
@@ -70,7 +75,7 @@ export class MapModalComponent implements OnInit, AfterViewInit {
     }
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.mapsKey}`;
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
