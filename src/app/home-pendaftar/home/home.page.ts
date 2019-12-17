@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 
 
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +14,47 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public listSekolah;
+  public listSekolah: any[];
+  public loadedListSekolah: any[];
   selectedImage: string;
+ 
+ 
 
-  constructor(private router: Router, private navCtrl: NavController, private pendaftarSvc: HomePendaftarService) { }
+  constructor(private router: Router, private navCtrl: NavController, private pendaftarSvc: HomePendaftarService) {}
 
   ngOnInit() {
     defineCustomElements(window);
-    this.listSekolah = this.pendaftarSvc.readAllSekolah().valueChanges();
+    this.pendaftarSvc.readAllSekolah().valueChanges()
+    .subscribe(listSekolah =>  {
+      this.listSekolah = listSekolah;
+      this.loadedListSekolah = listSekolah;
+    });
+    
   }
+
+  initializeItems(): void{
+    this.listSekolah = this.loadedListSekolah;
+  }
+
+  filterSekolah(event){
+    this.initializeItems();
+
+    const searchWord = event.srcElement.value;
+
+    if(!searchWord){
+      return;
+    }
+
+    this.listSekolah = this.listSekolah.filter( currentSekolah => {
+      if(currentSekolah.schoolName && searchWord){
+        if(currentSekolah.schoolName.toLowerCase().indexOf(searchWord.toLowerCase()) > -1){
+          return true;
+        }
+        return false;
+      }
+    })
+  }
+
 
   onMove(){
     this.router.navigate(['/home-pendaftar/tabs/home/a1'])

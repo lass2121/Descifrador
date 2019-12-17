@@ -15,7 +15,9 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-searchbar></ion-searchbar>
+          <ion-searchbar
+            (ionInput)="filterSekolah($event)"
+          ></ion-searchbar>
         </ion-col>
       </ion-row>
   
@@ -46,7 +48,7 @@
     
     <ion-list>
       <ion-item
-      *ngFor="let sekolah of listSekolah | async"   
+      *ngFor="let sekolah of listSekolah "   
       [routerLink]="['./',sekolah.userID]">
         <ion-label>{{sekolah.schoolName}}</ion-label>
       </ion-item>
