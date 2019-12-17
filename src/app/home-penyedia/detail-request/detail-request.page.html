@@ -11,45 +11,54 @@
         <ion-list>  
             <ion-item>
               <ion-label position="stacked">Nama Kegiatan</ion-label>
-              <ion-input type="text" readonly value="Mabar mobile legend"></ion-input>
+              <ion-input type="text" readonly>{{(request | async)?.nama}}</ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Tujuan Kegiatan</ion-label>
-              <ion-input type="text"  readonly value="a"></ion-input>
+              <ion-input type="text"  readonly value>{{(request | async)?.tujuan}}</ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Jumlah Peserta</ion-label>
-              <ion-input type="number" readonly value="500"></ion-input>
+              <ion-input type="number" readonly value>{{(request | async)?.jumlah}}</ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Tanggal Kegiatan</ion-label>
-              <ion-input type="number" readonly value="14-11-2019"></ion-input>
+              <ion-input type="number" readonly value>{{(request | async)?.date}}</ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">Waktu Mulai Kegiatan</ion-label>
-              <ion-input type="number" readonly value="04.00"></ion-input>
+              <ion-input type="number" readonly value>{{(request | async)?.start_time}}</ion-input>
             </ion-item>
             <ion-item>
+                <ion-label position="stacked">Waktu Akhir Kegiatan</ion-label>
+                <ion-input type="number" readonly value>{{(request | async)?.end_time}}</ion-input>
+              </ion-item>
+            <ion-item>
               <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
-              <ion-textarea rows="6" cols="5" readonly value="Mabar"></ion-textarea>
+              <ion-textarea rows="6" cols="5" readonly value>{{(request | async)?.desc}}</ion-textarea>
             </ion-item>
           </ion-list>
       </ion-card>
       <ion-card>
         <ion-card-content>
+            <form [formGroup]="form">
           <ion-item>
             <ion-label position="floating">Komentar</ion-label>
-            <ion-textarea rows="6" cols="5" placeholder="Enter more information here..."></ion-textarea>
+            <ion-textarea rows="6" cols="5" placeholder="Enter more information here..."  formControlName="comment"></ion-textarea>
           </ion-item>
+          <ion-item lines="none" *ngIf="validationComment">
+              <ion-text color="danger">Please enter a valid comment</ion-text>
+            </ion-item>
     <ion-grid>
         <ion-row>
             <ion-col size="4"></ion-col>
-            <ion-col size="4" > <ion-button color="danger">Decline</ion-button>
+            <ion-col size="4" > <ion-button (click)="reject()" color="danger">Reject</ion-button>
             </ion-col>
-            <ion-col size="4" > <ion-button color="success">Accept</ion-button>
+            <ion-col size="4" > <ion-button (click)="approve()" color="success">Accept</ion-button>
             </ion-col>
           </ion-row>    
           </ion-grid>
+        </form>
         </ion-card-content>
       </ion-card>
 </ion-content>

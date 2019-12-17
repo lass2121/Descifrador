@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Request } from 'src/app/home-pendaftar/request.model';
 
 import { Sekolah } from './sekolah.model';
+import { LoginService } from '../login/login.service';
 
 
 
@@ -16,7 +17,8 @@ export class HomePenyediaService {
   
   data : any;
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore,
+    private loginSvc: LoginService,) {
 
    }
 
@@ -24,26 +26,19 @@ export class HomePenyediaService {
     return this.firestore.collection<any>("request-kegiatan").valueChanges();
   }
 
-    // readRequest(){
-      
-    //   return this.firestore.collection('request-kegiatan');
-    // }
+  readRequest() {
+    let uid = this.loginSvc.getUid();
+    return this.firestore.collection('request-kegiatan',ref => 
+    ref.where('schoolID','==',uid ).where('status','==','Waiting Approval') );
+  }
 
+  statusRequest(data: any,reqID: string){
+    return this.firestore.collection('request-kegiatan').doc(reqID).set(data,{ merge: true });
+  }
 
-  //  readRequest() {
-  //   console.log(this.firestore.collection("request-kegiatan").snapshotChanges());
-  //   return this.firestore.collection("request-kegiatan").snapshotChanges().subscribe(data => {
-  //     this.data = data.map(e => {
-  //       return {
-          
-  //         nama : e.payload.doc.data()['nama']
-  //       };
-  //   });
-  //   for (var  i = 0; i < this.data.length; i++) {
-      
-  //   }
-  // });;
-  // }
+    readDetailRequest(reqID: string):AngularFirestoreDocument<Request>{
+      return this.firestore.collection('request-kegiatan').doc(reqID);
+    }
 
   getInfoPenyedia(UseriD: string): AngularFirestoreDocument<Sekolah>{
     console.log(UseriD);
