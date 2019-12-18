@@ -189,6 +189,16 @@ export class SignUpPenyediaPage implements OnInit {
     await alert.present();
   }
 
+  async successAlert(){
+    const alert = await this.alertCtrl.create({
+      header: 'Success',
+      message: 'Please Login to continue',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
   async getLocation() {
     if (!Capacitor.isPluginAvailable('Geolocation')) {
     // this.presentAlert();
