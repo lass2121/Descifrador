@@ -28,4 +28,16 @@ export class StatusPage implements OnInit {
     
   }
 
+  ionViewWillEnter(){
+    this.pendaftarSvc.readAllRequest().snapshotChanges().subscribe(data => {
+      this.listRequest = data.map(e => {
+        return{
+          $key: e.payload.doc.id,
+          $value : e.payload.doc.data(),
+        };
+      });
+      console.log(this.listRequest);
+    });
+  }
+
 }

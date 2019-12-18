@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-title>Request Status</ion-title>
     <ion-buttons>
       <ion-back-button defaultHref="/home-pendaftar/tabs/status"></ion-back-button>
     </ion-buttons>
@@ -35,22 +36,27 @@
         <ion-label color="primary" position="stacked">Activity End Time</ion-label>
         <ion-input type="text" readonly>{{(request | async)?.end_time}}</ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label color="primary" position="stacked">Activity Description</ion-label>
         <ion-textarea rows="10" cols="20" readonly>{{(request | async)?.desc}}</ion-textarea>
       </ion-item>
     </ion-list>
   </ion-card>
   <ion-card>
-    <ion-item lines="none">
+    <ion-item >
         <ion-label>Status : {{(request | async)?.status}}</ion-label>
     </ion-item>
       
-    <ion-item>
+    <ion-item lines="none">
       <ion-label  position="stacked">Feedback</ion-label>
       <ion-textarea readonly>{{(request | async)?.feedback}}</ion-textarea>
     </ion-item>
   </ion-card>
+
+  <ion-card *ngIf="status">
+    <ion-button (click)="goReview()" color="success" type="button" expand="block">Give Review</ion-button>
+  </ion-card>
+
   
     
 </ion-content>

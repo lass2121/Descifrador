@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SignUpService } from '../sign-up.service';
 import { PlaceService } from '../place.service';
 import { Capacitor, Plugins } from '@capacitor/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up-penyedia',
@@ -23,12 +24,13 @@ export class SignUpPenyediaPage implements OnInit {
   validationAddress = false;
 
   address = '';
+  private addressSub: Subscription;
 
   constructor(private alertCtrl: AlertController, private router: Router, private signUpSrvc: SignUpService, private placeSvc: PlaceService) { }
 
   ngOnInit() {
     console.log(this.getLocation());
-    this.placeSvc.getAddress().subscribe(
+    this.addressSub = this.placeSvc.getAddress().subscribe(
       currAddresss => {
         this.address = currAddresss;
       }
@@ -121,6 +123,10 @@ export class SignUpPenyediaPage implements OnInit {
         this.validationAddress = false;
       }
     });
+  }
+
+  ionViewWillLeave() {
+    this.addressSub.unsubscribe();
   }
 
   onSubmit() {

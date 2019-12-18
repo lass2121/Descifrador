@@ -20,15 +20,33 @@ export class HomePendaftarService {
   readAllRequest() {
     let uid = this.loginSvc.getUid();
     return this.firestore.collection('request-kegiatan',ref => 
-    ref.where('requesterID','==',uid));
+    ref
+      .where('requesterID','==',uid)
+      .where('review', '==', '')
+    );
+  }
+
+  readReviews(schoolID: string){
+    return this.firestore.collection('request-kegiatan',ref => 
+    ref
+      .where('schoolID','==',schoolID)
+      .orderBy('review','asc')
+      .startAfter('')
+      
+    );
   }
 
   readRequest(reqID: string):AngularFirestoreDocument<Request>{
     return this.firestore.collection('request-kegiatan').doc(reqID);
   }
 
+  updateRequestReview(reqID: string, review:string){
+    this.firestore.collection('request-kegiatan').doc(reqID).update({
+      review: review
+    });
+  }
+
   readInfoPendaftar(UseriD: string): AngularFirestoreDocument<User>{
-    console.log(UseriD);
     return this.firestore.collection('users').doc(UseriD);
   }
 
