@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HomePenyediaService } from '../home-penyedia.service';
 
 @Component({
   selector: 'app-review-sekolah',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./review-sekolah.page.scss'],
 })
 export class ReviewSekolahPage implements OnInit {
+  review: any;
 
-  constructor() { }
+  constructor(
+    private homePenyediaSvc: HomePenyediaService
+  ) { }
 
   ngOnInit() {
+    this.homePenyediaSvc.readReviews().valueChanges().subscribe(listReview =>  {
+      this.review = listReview;
+    });
   }
 
 }
