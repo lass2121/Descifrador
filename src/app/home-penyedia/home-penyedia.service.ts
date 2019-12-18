@@ -51,4 +51,10 @@ export class HomePenyediaService {
     ref.where('schoolID','==',uid ).where('status','==','Approved') );
   }
 
+  readHistoryRequest() {
+    let uid = this.loginSvc.getUid();
+    return this.firestore.collection('request-kegiatan',ref => 
+    ref.where('schoolID','==',uid ).where('status','==','Approved') );
+  }
+
 }

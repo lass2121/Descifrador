@@ -19,7 +19,10 @@
             <ion-col size="3"></ion-col>
             <ion-col size="4">
               <ion-buttons>
-                <ion-button [routerLink]="['./request']"><ion-icon name='mail' slot="icon-only"></ion-icon></ion-button>
+                <ion-button id="cart-btn" [routerLink]="['./request']">
+                  <ion-icon name='mail' slot="icon-only"></ion-icon>
+                  <ion-badge id="cart-badge">{{ dataNotif }}</ion-badge>
+                </ion-button>
               </ion-buttons>
             </ion-col>
             <ion-col size="3">

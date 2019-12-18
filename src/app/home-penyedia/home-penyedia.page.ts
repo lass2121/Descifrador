@@ -11,6 +11,8 @@ import { LiteralExpr } from '@angular/compiler';
 })
 export class HomePenyediaPage implements OnInit {
   data: any;
+  notif: any;
+  dataNotif: any;
   
   constructor(
     private navCtrl: NavController, 
@@ -18,6 +20,18 @@ export class HomePenyediaPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.homePenyediaSvc.readRequest().snapshotChanges().subscribe(data => {
+      this.notif = data.map(e => {
+        return{
+          $key: e.payload.doc.id,
+          $value : e.payload.doc.data(),
+        };
+      });
+      this.dataNotif = this.notif.length;
+    });
+   
+
+
     this.homePenyediaSvc.getApprovedRequest().snapshotChanges().subscribe(data => {
       this.data = data.map(e => {
         return{
