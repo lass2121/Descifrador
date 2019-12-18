@@ -27,10 +27,14 @@ const routes: Routes = [
         loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' 
       },
       { 
-        path: ':historyId',
+        path: ':requestId',
         loadChildren: './home-penyedia/history-request/history-request-detail/history-request-detail.module#HistoryRequestDetailPageModule' 
       },
       ]
+    },
+    {
+      path: 'review', 
+      loadChildren: './home-penyedia/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' 
     },
     {
       path: 'profil', 
@@ -63,6 +67,8 @@ const routes: Routes = [
   // { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
   // { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'review-sekolah', loadChildren: './home-penyedia/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' },
+
 ];
 
 @NgModule({

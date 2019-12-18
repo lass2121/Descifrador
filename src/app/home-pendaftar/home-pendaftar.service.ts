@@ -47,7 +47,6 @@ export class HomePendaftarService {
   }
 
   readInfoPendaftar(UseriD: string): AngularFirestoreDocument<User>{
-    console.log(UseriD);
     return this.firestore.collection('users').doc(UseriD);
   }
 
