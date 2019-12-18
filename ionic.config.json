@@ -1,7 +1,8 @@
 {
-  "name": "Week02",
+  "name": "CiDe",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

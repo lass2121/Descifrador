@@ -68,7 +68,6 @@ const routes: Routes = [
   // { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'review-sekolah', loadChildren: './home-penyedia/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' },
-
 ];
 
 @NgModule({
