@@ -46,9 +46,10 @@ export class HomePenyediaService {
   }
 
   getApprovedRequest() {
+    let temp = "";
     let uid = this.loginSvc.getUid();
     return this.firestore.collection('request-kegiatan',ref => 
-    ref.where('schoolID','==',uid ).where('status','==','Approved') );
+    ref.where('schoolID','==',uid ).where('status','==','Approved').where('review', '==', temp) );
   }
 
 }
