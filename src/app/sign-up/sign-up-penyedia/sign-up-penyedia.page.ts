@@ -136,7 +136,6 @@ export class SignUpPenyediaPage implements OnInit {
       if (this.form.value.password !== null && this.form.value.reTypePassword !== null && this.form.value.email !== null && this.form.value.notelepon !== null && this.form.value.sekolah !== null && this.form.value.jenjang !== null && this.form.value.address !== null) {
         if(this.form.value.password === this.form.value.reTypePassword) {
           this.Register();
-          this.router.navigate(['/login']);
         } else {
           this.validationTypePassword = true;
         }
@@ -180,7 +179,10 @@ export class SignUpPenyediaPage implements OnInit {
       data['userID'] = res.user.uid;
       data['email'] = this.form.value.email;
       this.signUpSrvc.addPenyedia(data,res.user.uid);
+      this.successAlert();
+      this.router.navigate(['/login']);
     }, err => {
+      this.errorAlert(err.message);
       console.log(err);
     });
   }
@@ -199,6 +201,16 @@ export class SignUpPenyediaPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Success',
       message: 'Please Login to continue',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async errorAlert(err:string){
+    const alert = await this.alertCtrl.create({
+      header: 'Invalid Signup',
+      message: err,
       buttons: ['OK']
     });
 
