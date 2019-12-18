@@ -65,7 +65,9 @@ export class HomePenyediaService {
   readHistoryRequest() {
     let uid = this.loginSvc.getUid();
     return this.firestore.collection('request-kegiatan',ref => 
-    ref.where('schoolID','==',uid ).where('status','==','Approved') );
+    ref.where('schoolID','==',uid ).where('status','in',['Approved','Rejected']));
   }
+
+ 
 
 }

@@ -27,7 +27,7 @@ const routes: Routes = [
         loadChildren: './home-penyedia/history-request/history-request.module#HistoryRequestPageModule' 
       },
       { 
-        path: ':historyId',
+        path: ':requestId',
         loadChildren: './home-penyedia/history-request/history-request-detail/history-request-detail.module#HistoryRequestDetailPageModule' 
       },
       ]

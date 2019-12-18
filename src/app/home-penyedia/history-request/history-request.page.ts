@@ -25,6 +25,8 @@ export class HistoryRequestPage implements OnInit {
       console.log(this.data);
     });
 
+
+   
    
   }
 }
