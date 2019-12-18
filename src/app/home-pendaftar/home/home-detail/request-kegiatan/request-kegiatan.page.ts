@@ -13,6 +13,8 @@ import { LoginService } from 'src/app/login/login.service';
 export class RequestKegiatanPage implements OnInit {
   form: FormGroup;
   schoolId:string;
+  userName:string;
+  userId:string;
 
   validationNama = false;
   validationTujuan = false;
@@ -37,6 +39,19 @@ export class RequestKegiatanPage implements OnInit {
           this.schoolId = paramMap.get('schoolId')
       }
     );
+    this.getUid().then(
+      value => {
+        this.getUser(value).then(
+          val => {
+            val.subscribe(valu => this.userName = valu.name);
+            
+          }
+        )
+        
+        
+      }
+    )
+    
 
     this.form = new FormGroup({
       nama: new FormControl(null, {
@@ -127,9 +142,23 @@ export class RequestKegiatanPage implements OnInit {
     });
 
   }
+
+  getUid(){
+    return new Promise<any>((resolve,reject) => {
+      this.userId = this.loginSvc.getUid();
+      resolve(this.userId);
+    })
+  }
+
+  getUser(userID){
+    return new Promise<any>((resolve,reject) => {
+      let user = this.homePendaftarSvc.readInfoPendaftar(userID).valueChanges();
+      resolve(user);
+    })
+  }
   
   onSubmit(){
-  
+    console.log(this.userName);
     if(!this.validationNama && !this.validationTujuan && !this.validationJumlah && !this.validationDate && !this.validationStartTime && !this.validationEndTime && !this.validationDesc){
       if(this.form.value.nama !== null && this.form.value.tujuan !== null && this.form.value.jumlah !== null && this.form.value.date !== null && this.form.value.start_time !== null && this.form.value.end_time !== null && this.form.value.desc !== null){
         console.log(this.form.value);
@@ -153,10 +182,11 @@ export class RequestKegiatanPage implements OnInit {
         data['requesterID'] = this.loginSvc.getUid();
         data['feedback'] = '';
         data['review'] = '';
+        data['userName'] = this.userName;
 
         this.homePendaftarSvc.addRequest(data);
         this.presentAlertSucccess();
-        this.navCtrl.navigateBack('/home-pendaftar/tabs/status');
+        this.navCtrl.navigateBack('/home-pendaftar/tabs/home');
       }
       else{
         if(this.form.value.nama === null){

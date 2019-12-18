@@ -33,6 +33,10 @@ const routes: Routes = [
       ]
     },
     {
+      path: 'review', 
+      loadChildren: './home-penyedia/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' 
+    },
+    {
       path: 'profil', 
       loadChildren: './home-penyedia/profil/profil.module#ProfilPageModule' 
     },
@@ -63,6 +67,8 @@ const routes: Routes = [
   // { path: 'home', loadChildren: './home-pendaftar/home/home.module#HomePageModule' },
   // { path: 'status', loadChildren: './home-pendaftar/status/status.module#StatusPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'review-sekolah', loadChildren: './home-penyedia/review-sekolah/review-sekolah.module#ReviewSekolahPageModule' },
+
 ];
 
 @NgModule({

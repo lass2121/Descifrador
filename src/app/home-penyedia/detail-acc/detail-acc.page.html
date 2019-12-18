@@ -16,39 +16,39 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title text-center style="font-size: 17px;">
-              Detail Request Yang di-Acc
+              Detail Request
             </ion-card-title>
           </ion-card-header>
           <ion-list>
               <ion-item>
-                <ion-label position="stacked">Nama Kegiatan</ion-label>
-                <ion-input type="text" readonly>{{(request | async)?.nama}}</ion-input>
+                <ion-label color="primary" position="stacked">Nama Kegiatan</ion-label>
+                <p>{{(request | async)?.nama}}</p>
               </ion-item>
               <ion-item>
-                <ion-label position="stacked">Deskripsi Kegiatan</ion-label>
-                <ion-input type="text"  readonly>{{(request | async)?.desc}}</ion-input>
+                <ion-label color="primary" position="stacked">Deskripsi Kegiatan</ion-label>
+                <p>{{(request | async)?.desc}}</p>
               </ion-item>
               <ion-item>
-                <ion-label position="stacked">Tujuan Kegiatan</ion-label>
-                <ion-input type="text"  readonly>{{(request | async)?.tujuan}}</ion-input>
+                <ion-label color="primary" position="stacked">Tujuan Kegiatan</ion-label>
+                <p>{{(request | async)?.tujuan}}</p>
               </ion-item>
               <ion-item>
-                <ion-label position="stacked">Jadwal Kegiatan</ion-label>
-                <ion-input type="text" readonly>{{(request | async)?.date}}</ion-input>
+                <ion-label color="primary" position="stacked">Jadwal Kegiatan</ion-label>
+                <p>{{(request | async)?.date}}</p>
               </ion-item>
               <ion-item>
-                <ion-label position="stacked">Jam Kegiatan</ion-label>
-                <ion-input type="text" readonly>{{(request | async)?.start_time}} s/d {{(request | async)?.end_time}}</ion-input>
+                <ion-label color="primary" position="stacked">Jam Kegiatan</ion-label>
+                <p>{{(request | async)?.start_time}} s/d {{(request | async)?.end_time}}</p>
               </ion-item>
               <ion-item>
-                <ion-label position="stacked">Jumlah Peserta</ion-label>
-                <ion-input type="number" readonly>{{(request | async)?.jumlah}}</ion-input>
+                <ion-label color="primary" position="stacked">Jumlah Peserta</ion-label>
+                <p>{{(request | async)?.jumlah}}</p>
               </ion-item>
             </ion-list>
         </ion-card>
         <ion-card>  
             <ion-item>
-              <ion-label position="stacked">Feedback</ion-label>
+              <ion-label color="primary" position="stacked">Feedback</ion-label>
               <ion-textarea readonly>{{(request | async)?.feedback}}</ion-textarea>
             </ion-item>
           </ion-card>

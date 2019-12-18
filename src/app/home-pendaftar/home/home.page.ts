@@ -77,8 +77,8 @@ export class HomePage implements OnInit {
     }
 
     this.listSekolah = this.listSekolah.filter( currentSekolah => {
-      if(currentSekolah.schoolName && searchWord){
-        if(currentSekolah.schoolName.toLowerCase().indexOf(searchWord.toLowerCase()) > -1){
+      if(currentSekolah.address && searchWord){
+        if(currentSekolah.address.toLowerCase().indexOf(searchWord.toLowerCase()) > -1){
           return true;
         }
         return false;

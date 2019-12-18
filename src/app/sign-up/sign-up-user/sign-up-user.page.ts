@@ -150,8 +150,7 @@ export class SignUpUserPage implements OnInit {
         && this.formTwo.value.occupation !== null && this.formTwo.value.notelephone !== null) {
           if(this.formOne.value.password === this.formOne.value.reTypePassword) {
             this.Register();
-            this.successAlert();
-            this.router.navigate(['/login']);
+            
           } else {
             this.validationTypePassword = true;
           }
@@ -199,8 +198,12 @@ export class SignUpUserPage implements OnInit {
       data['userID'] = res.user.uid;
       data['email'] = this.formOne.value.email;
       this.signUpSrvc.addUsers(data,res.user.uid);
+      this.successAlert();
+      this.router.navigate(['/login']);
     }, err => {
-      console.log(err);
+      this.errorAlert(err.message);
+      console.log(err.message);
+      //taro alert error
     });
   }
 
@@ -218,6 +221,15 @@ export class SignUpUserPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Success',
       message: 'Please Login to continue',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async errorAlert(err:string){
+    const alert = await this.alertCtrl.create({
+      header: 'Invalid Signup',
+      message: err,
       buttons: ['OK']
     });
 

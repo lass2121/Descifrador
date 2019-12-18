@@ -10,7 +10,7 @@
 <ion-content>
   <ion-card *ngFor="let review of Review">
     <ion-item lines="none">
-      <ion-label color="primary" position="stacked">{{review.nama}}</ion-label>
+      <ion-label color="primary" position="stacked">{{review.userName}}</ion-label>
       <ion-textarea rows="10" cols="20" readonly>{{review.review}}</ion-textarea>
     </ion-item>
   </ion-card>
